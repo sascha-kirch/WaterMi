@@ -37,6 +37,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B215717253F9E3600B815DB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2B215718253F9E4200B815DB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2BC00705253F96690094C606 /* LaunchScreen.storyboard */,
+				2BC00700253F96680094C606 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2B215719253F9E5300B815DB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2BC006FE253F96680094C606 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		2BC006EE253F96680094C606 = {
 			isa = PBXGroup;
 			children = (
@@ -58,10 +82,10 @@
 			children = (
 				2BC006FA253F96680094C606 /* AppDelegate.swift */,
 				2BC006FC253F96680094C606 /* SceneDelegate.swift */,
-				2BC006FE253F96680094C606 /* ViewController.swift */,
-				2BC00700253F96680094C606 /* Main.storyboard */,
+				2B215719253F9E5300B815DB /* Controller */,
+				2B215718253F9E4200B815DB /* View */,
+				2B215717253F9E3600B815DB /* Model */,
 				2BC00703253F96690094C606 /* Assets.xcassets */,
-				2BC00705253F96690094C606 /* LaunchScreen.storyboard */,
 				2BC00708253F96690094C606 /* Info.plist */,
 			);
 			path = WaterMi;
