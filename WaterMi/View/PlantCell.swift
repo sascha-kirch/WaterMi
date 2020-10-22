@@ -23,7 +23,7 @@ class PlantCell : SwipeTableViewCell {
         plantImageView.layer.borderWidth = 1
         plantImageView.layer.masksToBounds = false
         plantImageView.layer.borderColor = UIColor.black.cgColor
-        plantImageView.layer.cornerRadius = plantImageView.bounds.width/2 //Image needs to be rectangular in order to work!
+        plantImageView.layer.cornerRadius = plantImageView.frame.size.width/2 //Image needs to be rectangular in order to work!
         plantImageView.clipsToBounds = true
     }
     

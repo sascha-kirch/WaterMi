@@ -25,12 +25,27 @@
 		76B058A38CF5CC5FA2F55CE0 /* Pods_WaterMi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C36062413F5BB39B924CC8B2 /* Pods_WaterMi.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		2B5A9D3A2541E68E00E482A3 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		21592E095FC3022B549BA5F6 /* Pods-WaterMi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WaterMi.debug.xcconfig"; path = "Target Support Files/Pods-WaterMi/Pods-WaterMi.debug.xcconfig"; sourceTree = "<group>"; };
 		2B5332F92540D9530022BC32 /* Plant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plant.swift; sourceTree = "<group>"; };
 		2B5332FC2540DAAC0022BC32 /* PlantCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlantCell.xib; sourceTree = "<group>"; };
 		2B5332FF2540DE140022BC32 /* PlantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantCell.swift; sourceTree = "<group>"; };
 		2B5333032540E3A80022BC32 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		2B5A9D2A2541E68E00E482A3 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		2B5A9D2C2541E68E00E482A3 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		2B6A17322541A7E100B9B4EA /* ControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerExtensions.swift; sourceTree = "<group>"; };
 		2B6D6A692540870800025870 /* PlantsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantsTableViewController.swift; sourceTree = "<group>"; };
 		2B6D6A70254087B900025870 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -138,6 +153,8 @@
 			isa = PBXGroup;
 			children = (
 				C36062413F5BB39B924CC8B2 /* Pods_WaterMi.framework */,
+				2B5A9D2A2541E68E00E482A3 /* WidgetKit.framework */,
+				2B5A9D2C2541E68E00E482A3 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -154,6 +171,7 @@
 				2BC006F4253F96680094C606 /* Frameworks */,
 				2BC006F5253F96680094C606 /* Resources */,
 				2DFC0E24F5F148AA7708C49B /* [CP] Embed Pods Frameworks */,
+				2B5A9D3A2541E68E00E482A3 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);

@@ -32,6 +32,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Plants" id="UQ7-ef-r1d">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="heart.text.square" catalog="system" id="GSd-F4-vrr">
+                            <connections>
+                                <action selector="notificationButtonPressed:" destination="OZh-mr-bfz" id="kjE-KL-wOG"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="AQR-br-gaQ">
                             <connections>
                                 <action selector="addPlantButtonPressed:" destination="OZh-mr-bfz" id="Ufe-6n-gHR"/>
@@ -272,6 +277,7 @@
     </scenes>
     <resources>
         <image name="gear" catalog="system" width="128" height="119"/>
+        <image name="heart.text.square" catalog="system" width="128" height="114"/>
         <image name="leaf" catalog="system" width="128" height="109"/>
         <image name="leaf.arrow.triangle.circlepath" catalog="system" width="121" height="128"/>
         <image name="leaf.fill" catalog="system" width="128" height="106"/>
