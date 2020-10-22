@@ -10,8 +10,11 @@ import UIKit
 class PlantDetailsViewController: UIViewController {
 
     var selectedPlant: String?
+    var selectedPlantImage: UIImage?
     
     @IBOutlet weak var plantNameLabel: UILabel!
+    @IBOutlet weak var plantImageView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,7 +22,15 @@ class PlantDetailsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.plantNameLabel.text = selectedPlant ?? "PlantName"
+        self.plantNameLabel.text = selectedPlant
+        self.plantImageView.image = selectedPlantImage
+        
+        // crate round image View!!
+        plantImageView.layer.borderWidth = 1
+        plantImageView.layer.masksToBounds = false
+        plantImageView.layer.borderColor = UIColor.black.cgColor
+        plantImageView.layer.cornerRadius = plantImageView.frame.size.width/2
+        plantImageView.clipsToBounds = true
     }
 
     /*

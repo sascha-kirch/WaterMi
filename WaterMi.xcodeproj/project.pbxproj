@@ -3,10 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B5332FA2540D9530022BC32 /* Plant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5332F92540D9530022BC32 /* Plant.swift */; };
+		2B5332FD2540DAAC0022BC32 /* PlantCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B5332FC2540DAAC0022BC32 /* PlantCell.xib */; };
+		2B5333002540DE140022BC32 /* PlantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5332FF2540DE140022BC32 /* PlantCell.swift */; };
+		2B5333042540E3A80022BC32 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5333032540E3A80022BC32 /* Constants.swift */; };
 		2B6D6A6A2540870800025870 /* PlantsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D6A692540870800025870 /* PlantsTableViewController.swift */; };
 		2B6D6A71254087B900025870 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D6A70254087B900025870 /* SettingViewController.swift */; };
 		2B6D6A75254087F300025870 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D6A74254087F300025870 /* UserViewController.swift */; };
@@ -17,9 +21,15 @@
 		2BC00702253F96680094C606 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BC00700253F96680094C606 /* Main.storyboard */; };
 		2BC00704253F96690094C606 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BC00703253F96690094C606 /* Assets.xcassets */; };
 		2BC00707253F96690094C606 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BC00705253F96690094C606 /* LaunchScreen.storyboard */; };
+		76B058A38CF5CC5FA2F55CE0 /* Pods_WaterMi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C36062413F5BB39B924CC8B2 /* Pods_WaterMi.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		21592E095FC3022B549BA5F6 /* Pods-WaterMi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WaterMi.debug.xcconfig"; path = "Target Support Files/Pods-WaterMi/Pods-WaterMi.debug.xcconfig"; sourceTree = "<group>"; };
+		2B5332F92540D9530022BC32 /* Plant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plant.swift; sourceTree = "<group>"; };
+		2B5332FC2540DAAC0022BC32 /* PlantCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlantCell.xib; sourceTree = "<group>"; };
+		2B5332FF2540DE140022BC32 /* PlantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantCell.swift; sourceTree = "<group>"; };
+		2B5333032540E3A80022BC32 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2B6D6A692540870800025870 /* PlantsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantsTableViewController.swift; sourceTree = "<group>"; };
 		2B6D6A70254087B900025870 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		2B6D6A74254087F300025870 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
@@ -32,6 +42,8 @@
 		2BC00703253F96690094C606 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2BC00706253F96690094C606 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2BC00708253F96690094C606 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C161B5D651BB39E468BD76AA /* Pods-WaterMi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WaterMi.release.xcconfig"; path = "Target Support Files/Pods-WaterMi/Pods-WaterMi.release.xcconfig"; sourceTree = "<group>"; };
+		C36062413F5BB39B924CC8B2 /* Pods_WaterMi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WaterMi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,15 +51,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76B058A38CF5CC5FA2F55CE0 /* Pods_WaterMi.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		07805143353C417A94D28C15 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				21592E095FC3022B549BA5F6 /* Pods-WaterMi.debug.xcconfig */,
+				C161B5D651BB39E468BD76AA /* Pods-WaterMi.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		2B215717253F9E3600B815DB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2B5332F92540D9530022BC32 /* Plant.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -57,6 +80,8 @@
 			children = (
 				2BC00705253F96690094C606 /* LaunchScreen.storyboard */,
 				2BC00700253F96680094C606 /* Main.storyboard */,
+				2B5332FF2540DE140022BC32 /* PlantCell.swift */,
+				2B5332FC2540DAAC0022BC32 /* PlantCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -78,6 +103,8 @@
 			children = (
 				2BC006F9253F96680094C606 /* WaterMi */,
 				2BC006F8253F96680094C606 /* Products */,
+				07805143353C417A94D28C15 /* Pods */,
+				FD9783FC566A95595D41B81F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,8 +126,17 @@
 				2B215717253F9E3600B815DB /* Model */,
 				2BC00703253F96690094C606 /* Assets.xcassets */,
 				2BC00708253F96690094C606 /* Info.plist */,
+				2B5333032540E3A80022BC32 /* Constants.swift */,
 			);
 			path = WaterMi;
+			sourceTree = "<group>";
+		};
+		FD9783FC566A95595D41B81F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C36062413F5BB39B924CC8B2 /* Pods_WaterMi.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -110,9 +146,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2BC0070B253F96690094C606 /* Build configuration list for PBXNativeTarget "WaterMi" */;
 			buildPhases = (
+				1AE19A4B7E7F73692396A700 /* [CP] Check Pods Manifest.lock */,
 				2BC006F3253F96680094C606 /* Sources */,
 				2BC006F4253F96680094C606 /* Frameworks */,
 				2BC006F5253F96680094C606 /* Resources */,
+				2DFC0E24F5F148AA7708C49B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -161,12 +199,55 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BC00707253F96690094C606 /* LaunchScreen.storyboard in Resources */,
+				2B5332FD2540DAAC0022BC32 /* PlantCell.xib in Resources */,
 				2BC00704253F96690094C606 /* Assets.xcassets in Resources */,
 				2BC00702253F96680094C606 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1AE19A4B7E7F73692396A700 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WaterMi-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2DFC0E24F5F148AA7708C49B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WaterMi/Pods-WaterMi-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WaterMi/Pods-WaterMi-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WaterMi/Pods-WaterMi-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2BC006F3253F96680094C606 /* Sources */ = {
@@ -178,6 +259,9 @@
 				2B6D6A75254087F300025870 /* UserViewController.swift in Sources */,
 				2BC006FB253F96680094C606 /* AppDelegate.swift in Sources */,
 				2BC006FD253F96680094C606 /* SceneDelegate.swift in Sources */,
+				2B5333042540E3A80022BC32 /* Constants.swift in Sources */,
+				2B5332FA2540D9530022BC32 /* Plant.swift in Sources */,
+				2B5333002540DE140022BC32 /* PlantCell.swift in Sources */,
 				2B6D6A7C25408D4200025870 /* PlantDetailsViewController.swift in Sources */,
 				2B6D6A6A2540870800025870 /* PlantsTableViewController.swift in Sources */,
 			);
@@ -323,6 +407,7 @@
 		};
 		2BC0070C253F96690094C606 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 21592E095FC3022B549BA5F6 /* Pods-WaterMi.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -342,6 +427,7 @@
 		};
 		2BC0070D253F96690094C606 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C161B5D651BB39E468BD76AA /* Pods-WaterMi.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
