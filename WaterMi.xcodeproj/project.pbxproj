@@ -11,6 +11,7 @@
 		2B5332FD2540DAAC0022BC32 /* PlantCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B5332FC2540DAAC0022BC32 /* PlantCell.xib */; };
 		2B5333002540DE140022BC32 /* PlantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5332FF2540DE140022BC32 /* PlantCell.swift */; };
 		2B5333042540E3A80022BC32 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5333032540E3A80022BC32 /* Constants.swift */; };
+		2B6A17332541A7E100B9B4EA /* ControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6A17322541A7E100B9B4EA /* ControllerExtensions.swift */; };
 		2B6D6A6A2540870800025870 /* PlantsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D6A692540870800025870 /* PlantsTableViewController.swift */; };
 		2B6D6A71254087B900025870 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D6A70254087B900025870 /* SettingViewController.swift */; };
 		2B6D6A75254087F300025870 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D6A74254087F300025870 /* UserViewController.swift */; };
@@ -30,6 +31,7 @@
 		2B5332FC2540DAAC0022BC32 /* PlantCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlantCell.xib; sourceTree = "<group>"; };
 		2B5332FF2540DE140022BC32 /* PlantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantCell.swift; sourceTree = "<group>"; };
 		2B5333032540E3A80022BC32 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		2B6A17322541A7E100B9B4EA /* ControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerExtensions.swift; sourceTree = "<group>"; };
 		2B6D6A692540870800025870 /* PlantsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantsTableViewController.swift; sourceTree = "<group>"; };
 		2B6D6A70254087B900025870 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		2B6D6A74254087F300025870 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				2B6D6A74254087F300025870 /* UserViewController.swift */,
 				2B6D6A7725408C3300025870 /* AddPlantViewController.swift */,
 				2B6D6A7B25408D4200025870 /* PlantDetailsViewController.swift */,
+				2B6A17322541A7E100B9B4EA /* ControllerExtensions.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B6A17332541A7E100B9B4EA /* ControllerExtensions.swift in Sources */,
 				2B6D6A7825408C3300025870 /* AddPlantViewController.swift in Sources */,
 				2B6D6A71254087B900025870 /* SettingViewController.swift in Sources */,
 				2B6D6A75254087F300025870 /* UserViewController.swift in Sources */,

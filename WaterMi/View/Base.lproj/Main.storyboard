@@ -39,6 +39,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="plantsTableView" destination="bnW-8X-yII" id="aM0-08-ReY"/>
                         <segue destination="Pes-a3-eu7" kind="presentation" identifier="GoToAddPlantView" id="F98-u8-fDR"/>
                         <segue destination="dpH-SF-ct5" kind="show" identifier="GoToPlantDetailsView" id="Z7q-Pi-8y5"/>
                     </connections>
@@ -55,29 +56,80 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5cI-kE-3TH">
-                                <rect key="frame" x="66" y="726" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Add"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azF-Qy-BHp">
-                                <rect key="frame" x="300" y="726" width="48" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Cancel"/>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="yyL-WP-xQu">
+                                <rect key="frame" x="0.0" y="10" width="414" height="788"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="leaf.arrow.triangle.circlepath" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="B1N-0A-b6I">
+                                        <rect key="frame" x="157" y="-1.5" width="100" height="101"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="8Uk-Ep-Pgt"/>
+                                            <constraint firstAttribute="height" constant="100" id="fVa-ub-FuH"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VRu-hd-F5F">
+                                        <rect key="frame" x="158.5" y="130" width="97" height="30"/>
+                                        <state key="normal" title="Change photo"/>
+                                        <connections>
+                                            <action selector="changePhotoButtonPressed:" destination="Pes-a3-eu7" eventType="touchUpInside" id="f02-Lh-6uP"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Plant Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mhg-jl-7z1">
+                                        <rect key="frame" x="156" y="190.5" width="102.5" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uLF-yN-Ruj">
+                                        <rect key="frame" x="47" y="254.5" width="320" height="216"/>
+                                    </pickerView>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="Tfz-nf-Qn1">
+                                        <rect key="frame" x="47" y="501" width="320" height="216"/>
+                                    </datePicker>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="27" translatesAutoresizingMaskIntoConstraints="NO" id="U1i-YL-UgN">
+                                        <rect key="frame" x="120.5" y="747" width="173" height="41"/>
+                                        <subviews>
+                                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5cI-kE-3TH">
+                                                <rect key="frame" x="0.0" y="0.0" width="73" height="41"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                <state key="normal" title="Add"/>
+                                                <connections>
+                                                    <action selector="addButtonPressed:" destination="Pes-a3-eu7" eventType="touchUpInside" id="M5L-hR-Dwh"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azF-Qy-BHp">
+                                                <rect key="frame" x="100" y="0.0" width="73" height="41"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                <state key="normal" title="Cancel"/>
+                                                <connections>
+                                                    <action selector="cancelButtonPressed:" destination="Pes-a3-eu7" eventType="touchUpInside" id="eg0-Uc-eYz"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Qac-Mz-byQ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Qac-Mz-byQ" firstAttribute="trailing" secondItem="yyL-WP-xQu" secondAttribute="trailing" id="aqe-DX-4TE"/>
+                            <constraint firstItem="yyL-WP-xQu" firstAttribute="top" secondItem="Qac-Mz-byQ" secondAttribute="top" constant="10" id="cUc-Df-FRm"/>
+                            <constraint firstItem="yyL-WP-xQu" firstAttribute="leading" secondItem="Qac-Mz-byQ" secondAttribute="leading" id="p9T-EL-mQO"/>
+                            <constraint firstItem="Qac-Mz-byQ" firstAttribute="bottom" secondItem="yyL-WP-xQu" secondAttribute="bottom" constant="10" id="yTg-L9-9ob"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="plantImageView" destination="B1N-0A-b6I" id="csD-VX-jy0"/>
+                        <outlet property="plantNameTextField" destination="Mhg-jl-7z1" id="Oxl-Xe-yOK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bfw-og-MPV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3142" y="-853"/>
+            <point key="canvasLocation" x="3140.579710144928" y="-853.125"/>
         </scene>
         <!--Plant Details View Controller-->
         <scene sceneID="jxW-HF-vBg">
             <objects>
-                <viewController id="dpH-SF-ct5" customClass="PlantDetailsViewController" customModule="WaterMi" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlantDetailsViewController" id="dpH-SF-ct5" customClass="PlantDetailsViewController" customModule="WaterMi" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bzB-WV-hOu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -221,6 +273,7 @@
     <resources>
         <image name="gear" catalog="system" width="128" height="119"/>
         <image name="leaf" catalog="system" width="128" height="109"/>
+        <image name="leaf.arrow.triangle.circlepath" catalog="system" width="121" height="128"/>
         <image name="leaf.fill" catalog="system" width="128" height="106"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>

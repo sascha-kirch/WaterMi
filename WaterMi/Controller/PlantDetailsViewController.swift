@@ -33,6 +33,23 @@ class PlantDetailsViewController: UIViewController {
         plantImageView.clipsToBounds = true
     }
 
+    //MARK: - Preview Functionality
+    
+    /**Shows action items that can be performed when the preview is entered!*/
+    override var previewActionItems : [UIPreviewActionItem] {
+            
+            let action1 = UIPreviewAction(title: "Option 1", style: .default) { (action, viewController) -> Void in
+                print("action1 pressed")
+            }
+            
+            let action2 = UIPreviewAction(title: "Option 2", style: .destructive) { (action, viewController) -> Void in
+                print("action2 pressed")
+            }
+            
+            return [action1, action2]
+            
+        }
+    
     /*
     // MARK: - Navigation
 

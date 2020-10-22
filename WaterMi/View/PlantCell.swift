@@ -18,11 +18,12 @@ class PlantCell : SwipeTableViewCell {
         super.awakeFromNib()
         card.layer.cornerRadius = card.frame.size.height / 5 //rounden the card shape
         
+        
         // crate round image View!!
         plantImageView.layer.borderWidth = 1
         plantImageView.layer.masksToBounds = false
         plantImageView.layer.borderColor = UIColor.black.cgColor
-        plantImageView.layer.cornerRadius = plantImageView.bounds.width/2
+        plantImageView.layer.cornerRadius = plantImageView.bounds.width/2 //Image needs to be rectangular in order to work!
         plantImageView.clipsToBounds = true
     }
     

@@ -8,19 +8,29 @@
 import UIKit
 import SwipeCellKit
 
-class PlantsTableViewController: UITableViewController, SwipeTableViewCellDelegate {
+class PlantsTableViewController: UITableViewController, UIViewControllerPreviewingDelegate {
     
     
     
+    @IBOutlet var plantsTableView: UITableView!
     var Plants: [Plant] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Register3D Touch Preview
+        if( traitCollection.forceTouchCapability == .available){
+            registerForPreviewing(with: self, sourceView: plantsTableView)
+        }
+        plantsTableView.delegate = self
+        plantsTableView.dataSource = self
+        
         tableView.rowHeight = 80
         tableView.separatorStyle = .none
+        
         //register custom cell design!
         tableView.register(UINib(nibName: WMConstant.cellNibName, bundle: nil), forCellReuseIdentifier: WMConstant.cellIdentifier)
-
+        
         Plants = [
             Plant(name: "Olivio", image: UIImage(named: "olivio") ?? UIImage(named: "leaf")! ),
             Plant(name: "Tomatino", image: UIImage(named: "tomatino") ?? UIImage(named: "leaf")!),
@@ -28,10 +38,9 @@ class PlantsTableViewController: UITableViewController, SwipeTableViewCellDelega
     }
     
     @IBAction func addPlantButtonPressed(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "GoToAddPlantView", sender: self)
+        performSegue(withIdentifier: WMConstant.SegueID.addPlantView, sender: self)
     }
     // MARK: - Table view data source
-    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
@@ -53,20 +62,80 @@ class PlantsTableViewController: UITableViewController, SwipeTableViewCellDelega
         return cell
     }
     
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-        guard orientation == .right else { return nil }
+    
+    
+    //MARK: - Row Interaction
+    
+    /**Defines what happens, when item has been selected*/
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: WMConstant.SegueID.plantDetailsView, sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    /**Prepares the destination viewcontroller of the segue that is about to be executed*/
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //Only executed for the transition to the detail View!
+        if let destinationVC = segue.destination as? PlantDetailsViewController {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                destinationVC.selectedPlant = Plants[indexPath.row].name
+                destinationVC.selectedPlantImage = Plants[indexPath.row].image
+            }
+        } else if let destinationVC = segue.destination as? AddPlantViewController {
+                destinationVC.callingViewController = self
+        }
+    }
+    
+    //MARK: - 3D Touch capabilities
+    /**Returns the preview for a certain viewcontroller*/
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let indexPath = plantsTableView?.indexPathForRow(at: location) else { return nil }
+        guard let cell = plantsTableView?.cellForRow(at: indexPath) else { return nil }
+        guard let detailVC = storyboard?.instantiateViewController(withIdentifier: WMConstant.StoryBoardID.PlantDetailsViewController) as? PlantDetailsViewController else { return nil }
+        
+        detailVC.selectedPlant = Plants[indexPath.row].name
+        detailVC.selectedPlantImage = Plants[indexPath.row].image
+        
+        detailVC.preferredContentSize = CGSize(width: 0.0, height: 300)
+        
+        previewingContext.sourceRect = cell.frame
+        
+        return detailVC
+    }
+    
+    /**defines what happens, when the 3D touch has been recognized (pop-condition)*/
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        show(viewControllerToCommit, sender: self)
+    }
+}
 
+//MARK: - SwipeCellKit Extension
+extension PlantsTableViewController: SwipeTableViewCellDelegate {
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        //only allow sliding from the righthand side
+        guard orientation == .right else { return nil }
+        
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
             // handle action by updating model with deletion
-            if self.Plants[indexPath.row] != nil{
+            if indexPath.row < self.Plants.count {
                 self.Plants.remove(at: indexPath.row)
             }
         }
         // customize the action appearance
         deleteAction.image = UIImage(named: "trash")
+        deleteAction.backgroundColor = UIColor.red
+        
+        let editAction = SwipeAction(style: .default, title: "Edit") { action, indexPath in
+            // handle action by updating model with deletion
+            if indexPath.row < self.Plants.count {
+                self.performSegue(withIdentifier: WMConstant.SegueID.addPlantView, sender: self)
+            }
+        }
+        // customize the action appearance
+        editAction.image = UIImage(named: "pencil")
+        editAction.backgroundColor = UIColor.orange
         
         
-        return [deleteAction]
+        return [deleteAction, editAction]
     }
     
     /**used to define the options for swiping*/
@@ -75,24 +144,5 @@ class PlantsTableViewController: UITableViewController, SwipeTableViewCellDelega
         options.expansionStyle = .destructive
         return options
     }
-    
-    //MARK: - Row Interaction
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "GoToPlantDetailsView", sender: self)
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        //Only executed for the transition to the detail View!
-        if let destinationVC = segue.destination as? PlantDetailsViewController {
-            if let indexPath = tableView.indexPathForSelectedRow {
-                destinationVC.selectedPlant = Plants[indexPath.row].name
-                destinationVC.selectedPlantImage = Plants[indexPath.row].image
-            }
-        }
-    }
-   
 }
 
