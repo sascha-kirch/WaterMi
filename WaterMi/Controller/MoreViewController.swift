@@ -40,9 +40,7 @@ class MoreViewController: UIViewController {
             self.performSegue(withIdentifier: WMConstant.SegueID.feedbackViewController, sender: self)
                 }))
 
-                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) in
-                    self.performSegue(withIdentifier: WMConstant.SegueID.feedbackViewController, sender: self)
-                }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: .none))
 
         self.present(alert, animated: true, completion: .none)
     }
@@ -55,7 +53,7 @@ class MoreViewController: UIViewController {
                 destinationVC.sectionHeaderTitles = ["Section 1", "TELL YOUR FRIENDS"]
                 destinationVC.rowLabels = [
                     0:["Write a Review","Contact the WaterMi Team"],
-                    1:["Tweet about WaterMi","Tell your friends about WaterMi"]
+                    1:["Tweet about WaterMi","Tell your friends in Facebook"]
                 ]
                 destinationVC.rowImages = [
                     0:["star","envelope"],

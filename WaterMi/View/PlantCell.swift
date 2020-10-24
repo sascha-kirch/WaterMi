@@ -35,10 +35,10 @@ class PlantCell : SwipeTableViewCell {
         plantImageView.layer.borderWidth = 1
         plantImageView.layer.borderColor = UIColor.black.cgColor
         
-        //4
+        //Shoddow bellow Card
         stackView.layer.shadowOpacity = 0.75
-        stackView.layer.shadowOffset = CGSize(width: 0, height: 3)
-        stackView.layer.shadowRadius = 3.0
+        stackView.layer.shadowOffset = CGSize(width: 0, height: 2)
+        stackView.layer.shadowRadius = 2.0
         stackView.layer.isGeometryFlipped = false
         
     }

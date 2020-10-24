@@ -182,6 +182,7 @@
 			buildConfigurationList = 2BC0070B253F96690094C606 /* Build configuration list for PBXNativeTarget "WaterMi" */;
 			buildPhases = (
 				1AE19A4B7E7F73692396A700 /* [CP] Check Pods Manifest.lock */,
+				E3B28A9E64AEB9F187C2DAF9 /* [CP] Prepare Artifacts */,
 				2BC006F3253F96680094C606 /* Sources */,
 				2BC006F4253F96680094C606 /* Frameworks */,
 				2BC006F5253F96680094C606 /* Resources */,
@@ -282,6 +283,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WaterMi/Pods-WaterMi-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E3B28A9E64AEB9F187C2DAF9 /* [CP] Prepare Artifacts */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WaterMi/Pods-WaterMi-artifacts-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Prepare Artifacts";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WaterMi/Pods-WaterMi-artifacts-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WaterMi/Pods-WaterMi-artifacts.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

@@ -14,7 +14,6 @@ class CircularProgressBar : UIView{
           didSet { setNeedsDisplay() }
       }
       @IBInspectable var ringWidth: CGFloat = 5
-    @IBInspectable var timeLeft : String = "1h"
 
     var progress: CGFloat = 0.8 {
           didSet { setNeedsDisplay() }
@@ -22,7 +21,6 @@ class CircularProgressBar : UIView{
 
       private var progressLayer = CAShapeLayer()
       private var backgroundMask = CAShapeLayer()
-    private var textLayer = CATextLayer()
 
       override init(frame: CGRect) {
           super.init(frame: frame)
@@ -45,10 +43,6 @@ class CircularProgressBar : UIView{
           progressLayer.fillColor = nil
           layer.addSublayer(progressLayer)
           layer.transform = CATransform3DMakeRotation(CGFloat(90 * Double.pi / 180), 0, 0, -1)
-        
-        textLayer.string = timeLeft
-        textLayer.fontSize = 15
-        layer.addSublayer(textLayer)
         
       }
 

@@ -7,5 +7,8 @@ target 'WaterMi' do
 
   #Pod for swipping
   pod 'SwipeCellKit'
+  
+  #Pod for google Adds
+  pod 'Google-Mobile-Ads-SDK'
 
 end

@@ -8,13 +8,15 @@
 import UIKit
 import SwipeCellKit
 import UserNotifications
+import GoogleMobileAds
 
-class PlantsTableViewController: UITableViewController, UIViewControllerPreviewingDelegate, UNUserNotificationCenterDelegate {
+class PlantsTableViewController: UITableViewController, UIViewControllerPreviewingDelegate, UNUserNotificationCenterDelegate, GADUnifiedNativeAdLoaderDelegate  {
     
     
     
     @IBOutlet var plantsTableView: UITableView!
     var Plants: [Plant] = []
+    var adLoader: GADAdLoader!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,16 +49,24 @@ class PlantsTableViewController: UITableViewController, UIViewControllerPreviewi
                 print(error.localizedDescription)
             }
         }
+        
+        let multipleAdsOptions = GADMultipleAdsAdLoaderOptions()
+            multipleAdsOptions.numberOfAds = 5
+
+            adLoader = GADAdLoader(adUnitID: "ca-app-pub-3940256099942544/3986624511", rootViewController: self,
+                adTypes: [GADAdLoaderAdType.unifiedNative],
+                options: [multipleAdsOptions])
+            adLoader.delegate = self
+            adLoader.load(GADRequest())
     }
-    
-    
     
     @IBAction func addPlantButtonPressed(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: WMConstant.SegueID.addPlantView, sender: self)
     }
     // MARK: - Table view data source
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView,
+                            numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return Plants.count
     }
@@ -65,7 +75,8 @@ class PlantsTableViewController: UITableViewController, UIViewControllerPreviewi
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView,
+                            cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let plant = Plants[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: WMConstant.CustomCell.plantCellIdentifier, for: indexPath) as! PlantCell
@@ -81,7 +92,8 @@ class PlantsTableViewController: UITableViewController, UIViewControllerPreviewi
     //MARK: - Row Interaction
     
     /**Defines what happens, when item has been selected*/
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView,
+                            didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: WMConstant.SegueID.plantDetailsView, sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -101,7 +113,8 @@ class PlantsTableViewController: UITableViewController, UIViewControllerPreviewi
     
     //MARK: - 3D Touch capabilities
     /**Returns the preview for a certain viewcontroller*/
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing,
+                           viewControllerForLocation location: CGPoint) -> UIViewController? {
         guard let indexPath = plantsTableView?.indexPathForRow(at: location) else { return nil }
         guard let cell = plantsTableView?.cellForRow(at: indexPath) else { return nil }
         guard let detailVC = storyboard?.instantiateViewController(withIdentifier: WMConstant.StoryBoardID.PlantDetailsViewController) as? PlantDetailsViewController else { return nil }
@@ -124,7 +137,8 @@ class PlantsTableViewController: UITableViewController, UIViewControllerPreviewi
 
 //MARK: - SwipeCellKit Extension
 extension PlantsTableViewController: SwipeTableViewCellDelegate {
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+    func tableView(_ tableView: UITableView,
+                   editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         //only allow sliding from the righthand side
         guard orientation == .right else { return nil }
         
@@ -153,7 +167,8 @@ extension PlantsTableViewController: SwipeTableViewCellDelegate {
     }
     
     /**used to define the options for swiping*/
-    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
+    func tableView(_ tableView: UITableView,
+                   editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
         var options = SwipeOptions()
         options.expansionStyle = .destructive
         return options
@@ -197,5 +212,68 @@ extension PlantsTableViewController: SwipeTableViewCellDelegate {
         UNUserNotificationCenter.current().setNotificationCategories([waterMiCategory])
         
     }
+    
+    //MARK: - Add Loader (Google Adds Functions)
+    func adLoader(_ adLoader: GADAdLoader,
+                    didReceive nativeAd: GADUnifiedNativeAd) {
+        // A unified native ad has loaded, and can be displayed.
+        print("Received Add")
+        let alert = UIAlertController(title: nativeAd.headline, message: nativeAd.body, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: .none))
+        var imageView = UIImageView(frame: CGRect(x: 220, y: 10, width: 40, height: 40))
+        imageView.image = (nativeAd.mediaContent.mainImage ?? UIImage(systemName: "leaf"))
+        alert.view.addSubview(imageView)
+        
+        present(alert, animated: true, completion: nil)
+
+      }
+
+      func adLoaderDidFinishLoading(_ adLoader: GADAdLoader) {
+          // The adLoader has finished loading ads, and a new request can be sent.
+        print("AddLoader has finished Loading")
+        let alert = UIAlertController(title: "Finished", message: "Addloader did finish loading", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: .none))
+        present(alert, animated: true, completion: nil)
+      }
+    
+    public func adLoader(_ adLoader: GADAdLoader,
+                         didFailToReceiveAdWithError error: GADRequestError){
+        //Handling failed requests
+        print("Addloader Failed to recieve!")
+        print(error)
+        let alert = UIAlertController(title: "Error", message: "Error has accured", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: .none))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    
+    
+    //MARK: - Native Adds (Google Adds Functions)
+    
+    func nativeAdDidRecordImpression(_ nativeAd: GADUnifiedNativeAd) {
+      // The native ad was shown.
+    }
+
+    func nativeAdDidRecordClick(_ nativeAd: GADUnifiedNativeAd) {
+      // The native ad was clicked on.
+    }
+
+    func nativeAdWillPresentScreen(_ nativeAd: GADUnifiedNativeAd) {
+      // The native ad will present a full screen view.
+    }
+
+    func nativeAdWillDismissScreen(_ nativeAd: GADUnifiedNativeAd) {
+      // The native ad will dismiss a full screen view.
+    }
+
+    func nativeAdDidDismissScreen(_ nativeAd: GADUnifiedNativeAd) {
+      // The native ad did dismiss a full screen view.
+    }
+
+    func nativeAdWillLeaveApplication(_ nativeAd: GADUnifiedNativeAd) {
+      // The native ad will cause the application to become inactive and
+      // open a new application.
+    }
+    
 }
 
