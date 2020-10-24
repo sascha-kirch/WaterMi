@@ -9,12 +9,18 @@ import Foundation
 
 /**Contants in order to avoid string typos */
 struct WMConstant {
-    static let cellIdentifier = "ReusableCell"
-    static let cellNibName = "PlantCell"
     
-    struct SegueID{
+    struct CustomCell{
+    static let plantCellIdentifier = "ReusablePlantCell"
+    static let plantCellNibName = "PlantCell"
+        static let feedbackCellIdentifier = "ReusableFeedbackCell"
+        static let feedbackCellNibName = "FeedbackCell"
+    }
+    
+    struct SegueID {
         static let addPlantView = "GoToAddPlantView"
         static let plantDetailsView = "GoToPlantDetailsView"
+        static let feedbackViewController = "GoToFeedbackViewController"
     }
     
     struct StoryBoardID {

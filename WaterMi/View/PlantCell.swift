@@ -20,11 +20,20 @@ class PlantCell : SwipeTableViewCell {
         
         
         // crate round image View!!
-        plantImageView.layer.borderWidth = 1
-        plantImageView.layer.masksToBounds = false
-        plantImageView.layer.borderColor = UIColor.black.cgColor
-        plantImageView.layer.cornerRadius = plantImageView.frame.size.width/2 //Image needs to be rectangular in order to work!
+        //plantImageView.layer.borderWidth = 1
+        //plantImageView.layer.masksToBounds = false
+        //plantImageView.layer.borderColor = UIColor.black.cgColor
+        //plantImageView.layer.cornerRadius = plantImageView.frame.size.width/2 //Image needs to be rectangular in order to work!
+        //plantImageView.clipsToBounds = true
+        
+        plantImageView.contentMode = UIView.ContentMode.scaleAspectFit
+        plantImageView.frame.size.width = 80
+        plantImageView.frame.size.height = 80
+        plantImageView.layer.cornerRadius = 40
         plantImageView.clipsToBounds = true
+        plantImageView.layer.borderWidth = 1
+        plantImageView.layer.borderColor = UIColor.black.cgColor
+        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

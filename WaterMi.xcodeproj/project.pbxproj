@@ -11,12 +11,16 @@
 		2B5332FD2540DAAC0022BC32 /* PlantCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B5332FC2540DAAC0022BC32 /* PlantCell.xib */; };
 		2B5333002540DE140022BC32 /* PlantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5332FF2540DE140022BC32 /* PlantCell.swift */; };
 		2B5333042540E3A80022BC32 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5333032540E3A80022BC32 /* Constants.swift */; };
+		2B581139254355440060792A /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B581138254355440060792A /* MoreViewController.swift */; };
+		2B58113C2543572B0060792A /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B58113B2543572B0060792A /* FeedbackViewController.swift */; };
 		2B6A17332541A7E100B9B4EA /* ControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6A17322541A7E100B9B4EA /* ControllerExtensions.swift */; };
 		2B6D6A6A2540870800025870 /* PlantsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D6A692540870800025870 /* PlantsTableViewController.swift */; };
 		2B6D6A71254087B900025870 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D6A70254087B900025870 /* SettingViewController.swift */; };
 		2B6D6A75254087F300025870 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D6A74254087F300025870 /* UserViewController.swift */; };
 		2B6D6A7825408C3300025870 /* AddPlantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D6A7725408C3300025870 /* AddPlantViewController.swift */; };
 		2B6D6A7C25408D4200025870 /* PlantDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D6A7B25408D4200025870 /* PlantDetailsViewController.swift */; };
+		2B7F721C2544188A005C302A /* FeedbackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B7F721B2544188A005C302A /* FeedbackCell.xib */; };
+		2B7F721F2544190D005C302A /* FeedbackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7F721E2544190D005C302A /* FeedbackCell.swift */; };
 		2BC006FB253F96680094C606 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC006FA253F96680094C606 /* AppDelegate.swift */; };
 		2BC006FD253F96680094C606 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC006FC253F96680094C606 /* SceneDelegate.swift */; };
 		2BC00702253F96680094C606 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BC00700253F96680094C606 /* Main.storyboard */; };
@@ -44,6 +48,8 @@
 		2B5332FC2540DAAC0022BC32 /* PlantCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlantCell.xib; sourceTree = "<group>"; };
 		2B5332FF2540DE140022BC32 /* PlantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantCell.swift; sourceTree = "<group>"; };
 		2B5333032540E3A80022BC32 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		2B581138254355440060792A /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
+		2B58113B2543572B0060792A /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		2B5A9D2A2541E68E00E482A3 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		2B5A9D2C2541E68E00E482A3 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		2B6A17322541A7E100B9B4EA /* ControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerExtensions.swift; sourceTree = "<group>"; };
@@ -52,6 +58,8 @@
 		2B6D6A74254087F300025870 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		2B6D6A7725408C3300025870 /* AddPlantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlantViewController.swift; sourceTree = "<group>"; };
 		2B6D6A7B25408D4200025870 /* PlantDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantDetailsViewController.swift; sourceTree = "<group>"; };
+		2B7F721B2544188A005C302A /* FeedbackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedbackCell.xib; sourceTree = "<group>"; };
+		2B7F721E2544190D005C302A /* FeedbackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackCell.swift; sourceTree = "<group>"; };
 		2BC006F7253F96680094C606 /* WaterMi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaterMi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BC006FA253F96680094C606 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2BC006FC253F96680094C606 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +107,8 @@
 				2BC00700253F96680094C606 /* Main.storyboard */,
 				2B5332FF2540DE140022BC32 /* PlantCell.swift */,
 				2B5332FC2540DAAC0022BC32 /* PlantCell.xib */,
+				2B7F721E2544190D005C302A /* FeedbackCell.swift */,
+				2B7F721B2544188A005C302A /* FeedbackCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -112,6 +122,8 @@
 				2B6D6A7725408C3300025870 /* AddPlantViewController.swift */,
 				2B6D6A7B25408D4200025870 /* PlantDetailsViewController.swift */,
 				2B6A17322541A7E100B9B4EA /* ControllerExtensions.swift */,
+				2B581138254355440060792A /* MoreViewController.swift */,
+				2B58113B2543572B0060792A /* FeedbackViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -220,6 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BC00707253F96690094C606 /* LaunchScreen.storyboard in Resources */,
+				2B7F721C2544188A005C302A /* FeedbackCell.xib in Resources */,
 				2B5332FD2540DAAC0022BC32 /* PlantCell.xib in Resources */,
 				2BC00704253F96690094C606 /* Assets.xcassets in Resources */,
 				2BC00702253F96680094C606 /* Main.storyboard in Resources */,
@@ -275,6 +288,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B7F721F2544190D005C302A /* FeedbackCell.swift in Sources */,
 				2B6A17332541A7E100B9B4EA /* ControllerExtensions.swift in Sources */,
 				2B6D6A7825408C3300025870 /* AddPlantViewController.swift in Sources */,
 				2B6D6A71254087B900025870 /* SettingViewController.swift in Sources */,
@@ -284,6 +298,8 @@
 				2B5333042540E3A80022BC32 /* Constants.swift in Sources */,
 				2B5332FA2540D9530022BC32 /* Plant.swift in Sources */,
 				2B5333002540DE140022BC32 /* PlantCell.swift in Sources */,
+				2B581139254355440060792A /* MoreViewController.swift in Sources */,
+				2B58113C2543572B0060792A /* FeedbackViewController.swift in Sources */,
 				2B6D6A7C25408D4200025870 /* PlantDetailsViewController.swift in Sources */,
 				2B6D6A6A2540870800025870 /* PlantsTableViewController.swift in Sources */,
 			);

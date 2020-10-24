@@ -32,12 +32,12 @@ class PlantsTableViewController: UITableViewController, UIViewControllerPreviewi
         tableView.separatorStyle = .none
         
         //register custom cell design!
-        tableView.register(UINib(nibName: WMConstant.cellNibName, bundle: nil), forCellReuseIdentifier: WMConstant.cellIdentifier)
+        tableView.register(UINib(nibName: WMConstant.CustomCell.plantCellNibName, bundle: nil), forCellReuseIdentifier: WMConstant.CustomCell.plantCellIdentifier)
         
         Plants = [
-            Plant(name: "Olivio", image: UIImage(named: "olivio") ?? UIImage(named: "leaf")! ),
-            Plant(name: "Tomatino", image: UIImage(named: "tomatino") ?? UIImage(named: "leaf")!),
-            Plant(name: "Spicy", image: UIImage(named: "spicy") ?? UIImage(named: "leaf")!)]
+            Plant(name: "Olivio", image: UIImage(named: "olivio") ?? UIImage(systemName: "leaf")! ),
+            Plant(name: "Tomatino", image: UIImage(named: "tomatino") ?? UIImage(systemName: "leaf")!),
+            Plant(name: "Spicy", image: UIImage(named: "spicy") ?? UIImage(systemName: "leaf")!)]
         
         //Asking user for permission using the provisorial scheme!
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound, .provisional]) { success, error in
@@ -68,7 +68,7 @@ class PlantsTableViewController: UITableViewController, UIViewControllerPreviewi
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let plant = Plants[indexPath.row]
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: WMConstant.cellIdentifier, for: indexPath) as! PlantCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: WMConstant.CustomCell.plantCellIdentifier, for: indexPath) as! PlantCell
         cell.label.text = plant.name
         cell.plantImageView.image = plant.image
         cell.delegate = self //delegate for the swipe kit
