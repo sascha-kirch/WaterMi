@@ -28,7 +28,7 @@ class PlantsTableViewController: UITableViewController, UIViewControllerPreviewi
         UNUserNotificationCenter.current().delegate = self
         setCategories()
         
-        tableView.rowHeight = 80
+        //tableView.rowHeight = 80
         tableView.separatorStyle = .none
         
         //register custom cell design!

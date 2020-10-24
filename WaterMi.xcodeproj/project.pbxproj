@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B3B70A225445C08002CA4C3 /* CircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3B70A125445C08002CA4C3 /* CircularProgressBar.swift */; };
 		2B5332FA2540D9530022BC32 /* Plant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5332F92540D9530022BC32 /* Plant.swift */; };
 		2B5332FD2540DAAC0022BC32 /* PlantCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B5332FC2540DAAC0022BC32 /* PlantCell.xib */; };
 		2B5333002540DE140022BC32 /* PlantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5332FF2540DE140022BC32 /* PlantCell.swift */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		21592E095FC3022B549BA5F6 /* Pods-WaterMi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WaterMi.debug.xcconfig"; path = "Target Support Files/Pods-WaterMi/Pods-WaterMi.debug.xcconfig"; sourceTree = "<group>"; };
+		2B3B70A125445C08002CA4C3 /* CircularProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBar.swift; sourceTree = "<group>"; };
 		2B5332F92540D9530022BC32 /* Plant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plant.swift; sourceTree = "<group>"; };
 		2B5332FC2540DAAC0022BC32 /* PlantCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlantCell.xib; sourceTree = "<group>"; };
 		2B5332FF2540DE140022BC32 /* PlantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantCell.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				2B5332FC2540DAAC0022BC32 /* PlantCell.xib */,
 				2B7F721E2544190D005C302A /* FeedbackCell.swift */,
 				2B7F721B2544188A005C302A /* FeedbackCell.xib */,
+				2B3B70A125445C08002CA4C3 /* CircularProgressBar.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				2B58113C2543572B0060792A /* FeedbackViewController.swift in Sources */,
 				2B6D6A7C25408D4200025870 /* PlantDetailsViewController.swift in Sources */,
 				2B6D6A6A2540870800025870 /* PlantsTableViewController.swift in Sources */,
+				2B3B70A225445C08002CA4C3 /* CircularProgressBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

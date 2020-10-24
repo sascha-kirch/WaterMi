@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,24 +20,41 @@
                         <rect key="frame" x="5" y="5" width="465" height="90"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="M2u-cQ-NCB">
-                                <rect key="frame" x="5" y="5" width="80" height="79"/>
+                                <rect key="frame" x="5" y="5" width="80" height="80"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="YBF-L2-Ifv"/>
                                     <constraint firstAttribute="width" constant="80" id="sBR-45-Oon"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="424-0N-Gvh">
-                                <rect key="frame" x="105" y="5" width="360" height="79"/>
+                                <rect key="frame" x="105" y="5" width="265" height="80"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6n0-bf-V3m" customClass="CircularProgressBar" customModule="WaterMi" customModuleProvider="target">
+                                <rect key="frame" x="380" y="5" width="80" height="80"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="Tlm-Ba-72Q"/>
+                                    <constraint firstAttribute="height" constant="80" id="XmH-WX-cHO"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                        <color key="value" red="0.15906780349999999" green="0.77513227510000005" blue="0.4565320705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.15906780345872229" green="0.77513227513227512" blue="0.45653207048773092" alpha="0.49537386706948638" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="M2u-cQ-NCB" firstAttribute="top" secondItem="8jj-45-N1x" secondAttribute="top" constant="5" id="Muo-uJ-QZF"/>
+                            <constraint firstAttribute="height" constant="90" id="Reg-Ns-C41"/>
+                            <constraint firstAttribute="bottom" secondItem="6n0-bf-V3m" secondAttribute="bottom" constant="5" id="Zhu-oa-lw5"/>
+                            <constraint firstItem="6n0-bf-V3m" firstAttribute="leading" secondItem="424-0N-Gvh" secondAttribute="trailing" constant="10" id="c4d-WJ-aP4"/>
                             <constraint firstItem="M2u-cQ-NCB" firstAttribute="leading" secondItem="8jj-45-N1x" secondAttribute="leading" constant="5" id="iLy-fX-A5y"/>
+                            <constraint firstAttribute="trailing" secondItem="6n0-bf-V3m" secondAttribute="trailing" constant="5" id="jV6-PD-iVu"/>
                             <constraint firstItem="424-0N-Gvh" firstAttribute="leading" secondItem="M2u-cQ-NCB" secondAttribute="trailing" constant="20" id="puh-mp-qrZ"/>
-                            <constraint firstItem="M2u-cQ-NCB" firstAttribute="bottom" secondItem="8jj-45-N1x" secondAttribute="bottom" constant="5" id="uNl-B3-2kX"/>
                         </constraints>
                     </stackView>
                 </subviews>
@@ -51,8 +69,14 @@
                 <outlet property="card" destination="bJQ-d3-jcG" id="ifv-YW-y7i"/>
                 <outlet property="label" destination="424-0N-Gvh" id="4QC-BF-B6a"/>
                 <outlet property="plantImageView" destination="M2u-cQ-NCB" id="ehO-2T-TNx"/>
+                <outlet property="stackView" destination="8jj-45-N1x" id="6J2-7M-c03"/>
             </connections>
             <point key="canvasLocation" x="-107.97101449275362" y="-133.25892857142856"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

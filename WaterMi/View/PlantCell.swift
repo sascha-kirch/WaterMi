@@ -13,10 +13,11 @@ class PlantCell : SwipeTableViewCell {
     @IBOutlet weak var plantImageView: UIImageView!
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var card: UIView!
+    @IBOutlet weak var stackView: UIStackView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        card.layer.cornerRadius = card.frame.size.height / 5 //rounden the card shape
+        stackView.layer.cornerRadius = card.frame.size.height / 5 //rounden the card shape
         
         
         // crate round image View!!
@@ -33,6 +34,12 @@ class PlantCell : SwipeTableViewCell {
         plantImageView.clipsToBounds = true
         plantImageView.layer.borderWidth = 1
         plantImageView.layer.borderColor = UIColor.black.cgColor
+        
+        //4
+        stackView.layer.shadowOpacity = 0.75
+        stackView.layer.shadowOffset = CGSize(width: 0, height: 3)
+        stackView.layer.shadowRadius = 3.0
+        stackView.layer.isGeometryFlipped = false
         
     }
     
