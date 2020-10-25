@@ -83,11 +83,19 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uLF-yN-Ruj">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="u9t-9c-DsY">
                                         <rect key="frame" x="47" y="254.5" width="320" height="216"/>
-                                    </pickerView>
+                                        <subviews>
+                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uLF-yN-Ruj">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="216"/>
+                                            </pickerView>
+                                        </subviews>
+                                    </stackView>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="Tfz-nf-Qn1">
                                         <rect key="frame" x="47" y="501" width="320" height="216"/>
+                                        <connections>
+                                            <action selector="datePickerChanged:" destination="Pes-a3-eu7" eventType="valueChanged" id="ZO6-VF-6g6"/>
+                                        </connections>
                                     </datePicker>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="27" translatesAutoresizingMaskIntoConstraints="NO" id="U1i-YL-UgN">
                                         <rect key="frame" x="120.5" y="747" width="173" height="41"/>
@@ -123,6 +131,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="datePicker" destination="Tfz-nf-Qn1" id="cML-8P-uuM"/>
+                        <outlet property="intervallPickerView" destination="uLF-yN-Ruj" id="A0g-uj-2q9"/>
                         <outlet property="plantImageView" destination="B1N-0A-b6I" id="csD-VX-jy0"/>
                         <outlet property="plantNameTextField" destination="Mhg-jl-7z1" id="Oxl-Xe-yOK"/>
                     </connections>
@@ -140,15 +150,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="leaf.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Dsa-AV-6vO">
-                                <rect key="frame" x="107" y="189.5" width="200" height="147"/>
+                                <rect key="frame" x="107" y="189.5" width="200" height="197"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="5jd-0E-34B"/>
-                                    <constraint firstAttribute="height" constant="150" id="c5X-Fs-GMz"/>
+                                    <constraint firstAttribute="height" constant="200" id="c5X-Fs-GMz"/>
                                 </constraints>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="thin"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Plantname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="umK-Jq-ccM">
-                                <rect key="frame" x="166.5" y="358" width="81" height="21"/>
+                                <rect key="frame" x="166.5" y="408" width="81" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -157,10 +167,11 @@
                         <viewLayoutGuide key="safeArea" id="Y9M-UA-sN5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="umK-Jq-ccM" firstAttribute="top" secondItem="Dsa-AV-6vO" secondAttribute="bottom" constant="20" id="3b6-CP-1rb"/>
-                            <constraint firstItem="umK-Jq-ccM" firstAttribute="centerX" secondItem="bzB-WV-hOu" secondAttribute="centerX" id="5M9-bv-SLH"/>
                             <constraint firstItem="Dsa-AV-6vO" firstAttribute="centerX" secondItem="bzB-WV-hOu" secondAttribute="centerX" id="GFo-X1-TWG"/>
+                            <constraint firstItem="umK-Jq-ccM" firstAttribute="centerX" secondItem="Dsa-AV-6vO" secondAttribute="centerX" id="Ua4-Bb-Lsj"/>
                             <constraint firstItem="Dsa-AV-6vO" firstAttribute="top" secondItem="Y9M-UA-sN5" secondAttribute="top" constant="100" id="Zw4-s4-4sH"/>
+                            <constraint firstItem="Dsa-AV-6vO" firstAttribute="centerX" secondItem="bzB-WV-hOu" secondAttribute="centerX" id="bED-Rf-ZBT"/>
+                            <constraint firstItem="umK-Jq-ccM" firstAttribute="top" secondItem="Dsa-AV-6vO" secondAttribute="bottom" constant="20" id="ha4-GL-pnB"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Aqm-eq-V2u"/>
@@ -199,22 +210,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5he-Zd-MrZ">
-                                <rect key="frame" x="147" y="132" width="120" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5he-Zd-MrZ">
+                                <rect key="frame" x="147" y="138" width="120" height="30"/>
                                 <state key="normal" title="Ask for Feedback"/>
                                 <connections>
                                     <action selector="askForFeedbackButtonPressed:" destination="1Tu-hY-tp4" eventType="touchUpInside" id="49D-dv-Jyv"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cdh-lY-vXE">
-                                <rect key="frame" x="35" y="210" width="344" height="500"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cdh-lY-vXE">
+                                <rect key="frame" x="35" y="218" width="344" height="495"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="g5k-S8-rJA"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="g5k-S8-rJA" firstAttribute="trailing" secondItem="cdh-lY-vXE" secondAttribute="trailing" constant="35" id="0h7-MD-J7r"/>
+                            <constraint firstItem="cdh-lY-vXE" firstAttribute="leading" secondItem="g5k-S8-rJA" secondAttribute="leading" constant="35" id="Tci-pp-vrG"/>
+                            <constraint firstItem="5he-Zd-MrZ" firstAttribute="top" secondItem="g5k-S8-rJA" secondAttribute="top" constant="50" id="ivm-Vf-X9c"/>
+                            <constraint firstItem="cdh-lY-vXE" firstAttribute="top" secondItem="5he-Zd-MrZ" secondAttribute="bottom" constant="50" id="kaU-mT-aYJ"/>
+                            <constraint firstItem="g5k-S8-rJA" firstAttribute="bottom" secondItem="cdh-lY-vXE" secondAttribute="bottom" constant="100" id="oCB-ta-zdJ"/>
+                            <constraint firstItem="5he-Zd-MrZ" firstAttribute="centerX" secondItem="R77-Ra-C0Y" secondAttribute="centerX" id="vSy-09-rRj"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="More" id="c1z-k6-Tg1"/>
                     <connections>

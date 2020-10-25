@@ -107,14 +107,14 @@
 		2B215718253F9E4200B815DB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				2B6995D92544DB3100DB98C1 /* UnifiedNativeAdView.xib */,
-				2BC00705253F96690094C606 /* LaunchScreen.storyboard */,
-				2BC00700253F96680094C606 /* Main.storyboard */,
 				2B5332FF2540DE140022BC32 /* PlantCell.swift */,
 				2B5332FC2540DAAC0022BC32 /* PlantCell.xib */,
 				2B7F721E2544190D005C302A /* FeedbackCell.swift */,
 				2B7F721B2544188A005C302A /* FeedbackCell.xib */,
+				2BC00705253F96690094C606 /* LaunchScreen.storyboard */,
+				2BC00700253F96680094C606 /* Main.storyboard */,
 				2B3B70A125445C08002CA4C3 /* CircularProgressBar.swift */,
+				2B6995D92544DB3100DB98C1 /* UnifiedNativeAdView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -127,9 +127,9 @@
 				2B6D6A74254087F300025870 /* UserViewController.swift */,
 				2B6D6A7725408C3300025870 /* AddPlantViewController.swift */,
 				2B6D6A7B25408D4200025870 /* PlantDetailsViewController.swift */,
-				2B6A17322541A7E100B9B4EA /* ControllerExtensions.swift */,
 				2B581138254355440060792A /* MoreViewController.swift */,
 				2B58113B2543572B0060792A /* FeedbackViewController.swift */,
+				2B6A17322541A7E100B9B4EA /* ControllerExtensions.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

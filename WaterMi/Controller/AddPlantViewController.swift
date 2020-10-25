@@ -8,19 +8,23 @@
 import UIKit
 import CoreData
 
-class AddPlantViewController: UIViewController , UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
+class AddPlantViewController: UIViewController , UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+
     var inEditMode = false
     var selectedPlant: String?
     var selectedPlantImage: UIImage?
     var callingViewController : PlantsTableViewController?
     var imagePickerController : UIImagePickerController = UIImagePickerController()
+    let intervallData = ["Dayly","Weekly","Monthly"]
     
     //refers to the lazy var in the appdelegate file!
     var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @IBOutlet weak var plantImageView: UIImageView!
     @IBOutlet weak var plantNameTextField: UITextField!
+    
+    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var intervallPickerView: UIPickerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +33,8 @@ class AddPlantViewController: UIViewController , UITextFieldDelegate, UIImagePic
         self.hideKeyboardWhenTappedAround()
         self.plantNameTextField.delegate = self
         self.imagePickerController.delegate = self
+        intervallPickerView.delegate = self
+        intervallPickerView.dataSource = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,7 +52,12 @@ class AddPlantViewController: UIViewController , UITextFieldDelegate, UIImagePic
         plantImageView.clipsToBounds = true
         
         self.imagePickerController.allowsEditing = true
+        
+        // intervallPickerView.isHidden = true
+        
     }
+    
+    //MARK: - Buttons
     
     @IBAction func addButtonPressed(_ sender: UIButton) {
         if let viewController = callingViewController {
@@ -76,7 +87,7 @@ class AddPlantViewController: UIViewController , UITextFieldDelegate, UIImagePic
         
         callingViewController?.tableView.reloadData()
     }
-
+    
     
     //MARK: - UITextFieldDelegates
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -121,7 +132,39 @@ class AddPlantViewController: UIViewController , UITextFieldDelegate, UIImagePic
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    
+    //MARK: - PickerView
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        switch(pickerView){
+        case intervallPickerView:
+            return intervallData.count
+        default: return 0
+        }
+        
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        switch(pickerView){
+        case intervallPickerView:
+            return intervallData[row]
+        default: return nil
+        }
+        
+    }
+    
+   // func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+   //     switch(pickerView){
+   //     case intervallPickerView:
+   //         //intervallButton.titleLabel?.text = intervallData[row]
+   //     default: return
+   //     }
+   // }
+    
+    
 }
-
-
-

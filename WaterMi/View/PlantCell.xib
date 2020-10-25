@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,33 +27,49 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="424-0N-Gvh">
-                                <rect key="frame" x="105" y="5" width="265" height="80"/>
+                                <rect key="frame" x="105" y="5" width="300" height="80"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6n0-bf-V3m" customClass="CircularProgressBar" customModule="WaterMi" customModuleProvider="target">
-                                <rect key="frame" x="380" y="5" width="80" height="80"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nPB-Be-t9r">
+                                <rect key="frame" x="415" y="9.5" width="40" height="70.5"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6n0-bf-V3m" customClass="CircularProgressBar" customModule="WaterMi" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="Tlm-Ba-72Q"/>
+                                            <constraint firstAttribute="height" constant="40" id="XmH-WX-cHO"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                <color key="value" red="0.15906780349999999" green="0.77513227510000005" blue="0.4565320705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tKM-fh-X7z">
+                                        <rect key="frame" x="0.0" y="50" width="40" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="Tlm-Ba-72Q"/>
-                                    <constraint firstAttribute="height" constant="80" id="XmH-WX-cHO"/>
+                                    <constraint firstItem="6n0-bf-V3m" firstAttribute="centerX" secondItem="nPB-Be-t9r" secondAttribute="centerX" id="bLS-5f-fEB"/>
+                                    <constraint firstItem="tKM-fh-X7z" firstAttribute="centerX" secondItem="nPB-Be-t9r" secondAttribute="centerX" id="sOC-wR-1D6"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
-                                        <color key="value" red="0.15906780349999999" green="0.77513227510000005" blue="0.4565320705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.15906780345872229" green="0.77513227513227512" blue="0.45653207048773092" alpha="0.49537386706948638" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="nPB-Be-t9r" secondAttribute="bottom" constant="10" id="Hyb-xz-PoC"/>
                             <constraint firstItem="M2u-cQ-NCB" firstAttribute="top" secondItem="8jj-45-N1x" secondAttribute="top" constant="5" id="Muo-uJ-QZF"/>
                             <constraint firstAttribute="height" constant="90" id="Reg-Ns-C41"/>
-                            <constraint firstAttribute="bottom" secondItem="6n0-bf-V3m" secondAttribute="bottom" constant="5" id="Zhu-oa-lw5"/>
-                            <constraint firstItem="6n0-bf-V3m" firstAttribute="leading" secondItem="424-0N-Gvh" secondAttribute="trailing" constant="10" id="c4d-WJ-aP4"/>
+                            <constraint firstItem="nPB-Be-t9r" firstAttribute="top" secondItem="8jj-45-N1x" secondAttribute="top" constant="10" id="YGN-r4-Bj1"/>
+                            <constraint firstAttribute="trailing" secondItem="nPB-Be-t9r" secondAttribute="trailing" constant="10" id="bbp-ef-M9p"/>
+                            <constraint firstItem="nPB-Be-t9r" firstAttribute="leading" secondItem="424-0N-Gvh" secondAttribute="trailing" constant="10" id="gso-bk-gdX"/>
                             <constraint firstItem="M2u-cQ-NCB" firstAttribute="leading" secondItem="8jj-45-N1x" secondAttribute="leading" constant="5" id="iLy-fX-A5y"/>
-                            <constraint firstAttribute="trailing" secondItem="6n0-bf-V3m" secondAttribute="trailing" constant="5" id="jV6-PD-iVu"/>
                             <constraint firstItem="424-0N-Gvh" firstAttribute="leading" secondItem="M2u-cQ-NCB" secondAttribute="trailing" constant="20" id="puh-mp-qrZ"/>
                         </constraints>
                     </stackView>
@@ -70,8 +86,9 @@
                 <outlet property="label" destination="424-0N-Gvh" id="4QC-BF-B6a"/>
                 <outlet property="plantImageView" destination="M2u-cQ-NCB" id="ehO-2T-TNx"/>
                 <outlet property="stackView" destination="8jj-45-N1x" id="6J2-7M-c03"/>
+                <outlet property="timeLeftLabel" destination="tKM-fh-X7z" id="iTX-GD-F7x"/>
             </connections>
-            <point key="canvasLocation" x="-107.97101449275362" y="-133.25892857142856"/>
+            <point key="canvasLocation" x="-317" y="-173"/>
         </tableViewCell>
     </objects>
     <resources>

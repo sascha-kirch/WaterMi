@@ -40,10 +40,6 @@ class PlantsTableViewController: UITableViewController, UIViewControllerPreviewi
         tableView.register(UINib(nibName: WMConstant.CustomCell.plantCellNibName, bundle: nil), forCellReuseIdentifier: WMConstant.CustomCell.plantCellIdentifier)
         
         loadPlants()
-        //Plants = [
-        //    Plant(name: "Olivio", image: UIImage(named: "olivio") ?? UIImage(systemName: "leaf")! ),
-        //    Plant(name: "Tomatino", image: UIImage(named: "tomatino") ?? UIImage(systemName: "leaf")!),
-        //    Plant(name: "Spicy", image: UIImage(named: "spicy") ?? UIImage(systemName: "leaf")!)]
         
         //Asking user for permission using the provisorial scheme!
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound, .provisional]) { success, error in
@@ -53,8 +49,6 @@ class PlantsTableViewController: UITableViewController, UIViewControllerPreviewi
                 print(error.localizedDescription)
             }
         }
-        
-        
     }
     
     @IBAction func addPlantButtonPressed(_ sender: UIBarButtonItem) {
@@ -92,6 +86,16 @@ class PlantsTableViewController: UITableViewController, UIViewControllerPreviewi
             } catch {
                 print("Error loading category array \(error)")
             }
+    }
+    
+    func savePlants() {
+        do {
+            try context.save()
+        } catch {
+            print("Error encoding item array \(error)")
+        }
+        
+        //tableView.reloadData() -> No update required since it is done by the swipe controller. If you do it, it will result in an exception!!!!
     }
     
     //MARK: - Row Interaction
@@ -138,6 +142,44 @@ class PlantsTableViewController: UITableViewController, UIViewControllerPreviewi
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
         show(viewControllerToCommit, sender: self)
     }
+    
+    
+    //MARK: - Notification related
+    
+    /**Used to debug notifications*/
+    @IBAction func notificationButtonPressed(_ sender: UIBarButtonItem) {
+        let notificationContent = UNMutableNotificationContent()
+        notificationContent.title = "Olivio:"
+        notificationContent.subtitle = "\"Hi pal! I am getting thursty!\""
+        notificationContent.body = "Please be so kind and help olivio. Don't forget to update the reminder!"
+        notificationContent.sound = UNNotificationSound.default
+        notificationContent.badge = NSNumber(value: UIApplication.shared.applicationIconBadgeNumber + 1)
+        notificationContent.categoryIdentifier = "watermi.category"
+        
+        //Method is defined in the extensions file!
+        if let attechment = UNNotificationAttachment.create(identifier: ProcessInfo.processInfo.globallyUniqueString, image: UIImage(named: "olivio")!, options: nil){
+            notificationContent.attachments = [attechment]
+        }
+
+        // show this notification one seconds from now
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+
+        // choose a random identifier
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: notificationContent, trigger: trigger)
+
+        // add our notification request
+        UNUserNotificationCenter.current().add(request)
+    }
+    
+    func setCategories(){
+        let waterAction = UNNotificationAction(identifier: "waterAction", title: "Watered!", options: [])
+        let postponeAction = UNNotificationAction(identifier: "postponeAction", title: "Remind me later!", options: [])
+    
+        let waterMiCategory = UNNotificationCategory(identifier: "watermi.category", actions: [waterAction,postponeAction], intentIdentifiers: [], options: [])
+    
+        UNUserNotificationCenter.current().setNotificationCategories([waterMiCategory])
+        
+    }
 }
 
 //MARK: - SwipeCellKit Extension
@@ -150,12 +192,17 @@ extension PlantsTableViewController: SwipeTableViewCellDelegate {
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
             // handle action by updating model with deletion
             if indexPath.row < self.Plants.count {
-                self.Plants.remove(at: indexPath.row)
+
+                self.context.delete(self.Plants[indexPath.row])
+                self.Plants.remove(at: indexPath.row) //IMPORTANT: first the context, then the array! If not ndex out of range
+                self.savePlants()
+                
             }
         }
         // customize the action appearance
         deleteAction.image = UIImage(named: "trash")
         deleteAction.backgroundColor = UIColor.red
+        
         
         let editAction = SwipeAction(style: .default, title: "Edit") { action, indexPath in
             // handle action by updating model with deletion
@@ -178,47 +225,6 @@ extension PlantsTableViewController: SwipeTableViewCellDelegate {
         options.expansionStyle = .destructive
         return options
     }
-    
-    //MARK: - Notification related
-    
-    /**Used to debug notifications*/
-    @IBAction func notificationButtonPressed(_ sender: UIBarButtonItem) {
-        let content = UNMutableNotificationContent()
-        content.title = "Olivio:"
-        content.subtitle = "\"Hi pal! I am getting thursty!\""
-        content.body = "Please be so kind and help olivio. Don't forget to update the reminder!"
-        content.sound = UNNotificationSound.default
-        content.badge = NSNumber(value: UIApplication.shared.applicationIconBadgeNumber + 1)
-        content.categoryIdentifier = "watermi.category"
-        
-        //Method is defined in the extensions file!
-        if let attechment = UNNotificationAttachment.create(identifier: ProcessInfo.processInfo.globallyUniqueString, image: UIImage(named: "olivio")!, options: nil){
-            content.attachments = [attechment]
-        }
-        
 
-        // show this notification one seconds from now
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-
-        // choose a random identifier
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-
-        // add our notification request
-        UNUserNotificationCenter.current().add(request)
-    }
-    
-    func setCategories(){
-        let waterAction = UNNotificationAction(identifier: "waterAction", title: "Watered!", options: [])
-        let postponeAction = UNNotificationAction(identifier: "postponeAction", title: "Remind me later!", options: [])
-    
-        let waterMiCategory = UNNotificationCategory(identifier: "watermi.category", actions: [waterAction,postponeAction], intentIdentifiers: [], options: [])
-
-    
-        UNUserNotificationCenter.current().setNotificationCategories([waterMiCategory])
-        
-    }
-    
-   
-    
 }
 

@@ -30,6 +30,8 @@ class MoreViewController: UIViewController , GADUnifiedNativeAdLoaderDelegate {
             adLoader.load(GADRequest())
     }
     
+    //MARK: - Feedback Related Methods
+    
     enum EfeedbackIndicator {
         case happy
         case confused

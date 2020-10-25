@@ -12,8 +12,6 @@ import CoreData
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -22,10 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //GADMobileAds.sharedInstance().start(completionHandler: nil)
         GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = ["3173de5b2ceb14db7a5089a8fb761182"]
         
+        // Reset the Notification badge Count when starting the app
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        
         return true
     }
 
-    // MARK: UISceneSession Lifecycle
+//MARK: - UISceneSession Lifecycle
 
     func application(_ application: UIApplication,
                      configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {

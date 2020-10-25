@@ -21,7 +21,10 @@ class FeedbackViewController: UITableViewController {
         tableView.register(UINib(nibName: WMConstant.CustomCell.feedbackCellNibName, bundle: nil), forCellReuseIdentifier: WMConstant.CustomCell.feedbackCellIdentifier)
     }
     
+    //MARK: - Actions
     
+    
+    //MARK: - datasource
     override func numberOfSections(in tableView: UITableView) -> Int {
         return sectionHeaderTitles.count
     }
@@ -29,9 +32,7 @@ class FeedbackViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sectionHeaderTitles[section]
     }
-    
-    
-    
+ 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return rowLabels[section]!.count
     }
@@ -42,7 +43,6 @@ class FeedbackViewController: UITableViewController {
         cell.feedbackCellImageView.image = UIImage(systemName: rowImages[indexPath.section]![indexPath.row])
         return cell
     }
-   
     
     
 }
