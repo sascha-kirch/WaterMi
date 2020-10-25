@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		2B3B70A225445C08002CA4C3 /* CircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3B70A125445C08002CA4C3 /* CircularProgressBar.swift */; };
-		2B5332FA2540D9530022BC32 /* Plant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5332F92540D9530022BC32 /* Plant.swift */; };
 		2B5332FD2540DAAC0022BC32 /* PlantCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B5332FC2540DAAC0022BC32 /* PlantCell.xib */; };
 		2B5333002540DE140022BC32 /* PlantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5332FF2540DE140022BC32 /* PlantCell.swift */; };
 		2B5333042540E3A80022BC32 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5333032540E3A80022BC32 /* Constants.swift */; };
 		2B581139254355440060792A /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B581138254355440060792A /* MoreViewController.swift */; };
 		2B58113C2543572B0060792A /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B58113B2543572B0060792A /* FeedbackViewController.swift */; };
+		2B58DE582545A228008DAE51 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B58DE562545A228008DAE51 /* DataModel.xcdatamodeld */; };
+		2B6995DA2544DB3100DB98C1 /* UnifiedNativeAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B6995D92544DB3100DB98C1 /* UnifiedNativeAdView.xib */; };
 		2B6A17332541A7E100B9B4EA /* ControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6A17322541A7E100B9B4EA /* ControllerExtensions.swift */; };
 		2B6D6A6A2540870800025870 /* PlantsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D6A692540870800025870 /* PlantsTableViewController.swift */; };
 		2B6D6A71254087B900025870 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D6A70254087B900025870 /* SettingViewController.swift */; };
@@ -46,14 +47,15 @@
 /* Begin PBXFileReference section */
 		21592E095FC3022B549BA5F6 /* Pods-WaterMi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WaterMi.debug.xcconfig"; path = "Target Support Files/Pods-WaterMi/Pods-WaterMi.debug.xcconfig"; sourceTree = "<group>"; };
 		2B3B70A125445C08002CA4C3 /* CircularProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBar.swift; sourceTree = "<group>"; };
-		2B5332F92540D9530022BC32 /* Plant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plant.swift; sourceTree = "<group>"; };
 		2B5332FC2540DAAC0022BC32 /* PlantCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlantCell.xib; sourceTree = "<group>"; };
 		2B5332FF2540DE140022BC32 /* PlantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantCell.swift; sourceTree = "<group>"; };
 		2B5333032540E3A80022BC32 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2B581138254355440060792A /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
 		2B58113B2543572B0060792A /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
+		2B58DE572545A228008DAE51 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		2B5A9D2A2541E68E00E482A3 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		2B5A9D2C2541E68E00E482A3 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		2B6995D92544DB3100DB98C1 /* UnifiedNativeAdView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UnifiedNativeAdView.xib; path = ../../../../UnifiedNativeAdView.xib; sourceTree = "<group>"; };
 		2B6A17322541A7E100B9B4EA /* ControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerExtensions.swift; sourceTree = "<group>"; };
 		2B6D6A692540870800025870 /* PlantsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantsTableViewController.swift; sourceTree = "<group>"; };
 		2B6D6A70254087B900025870 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -97,7 +99,7 @@
 		2B215717253F9E3600B815DB /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				2B5332F92540D9530022BC32 /* Plant.swift */,
+				2B58DE562545A228008DAE51 /* DataModel.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -105,6 +107,7 @@
 		2B215718253F9E4200B815DB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2B6995D92544DB3100DB98C1 /* UnifiedNativeAdView.xib */,
 				2BC00705253F96690094C606 /* LaunchScreen.storyboard */,
 				2BC00700253F96680094C606 /* Main.storyboard */,
 				2B5332FF2540DE140022BC32 /* PlantCell.swift */,
@@ -236,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BC00707253F96690094C606 /* LaunchScreen.storyboard in Resources */,
+				2B6995DA2544DB3100DB98C1 /* UnifiedNativeAdView.xib in Resources */,
 				2B7F721C2544188A005C302A /* FeedbackCell.xib in Resources */,
 				2B5332FD2540DAAC0022BC32 /* PlantCell.xib in Resources */,
 				2BC00704253F96690094C606 /* Assets.xcassets in Resources */,
@@ -317,7 +321,7 @@
 				2BC006FB253F96680094C606 /* AppDelegate.swift in Sources */,
 				2BC006FD253F96680094C606 /* SceneDelegate.swift in Sources */,
 				2B5333042540E3A80022BC32 /* Constants.swift in Sources */,
-				2B5332FA2540D9530022BC32 /* Plant.swift in Sources */,
+				2B58DE582545A228008DAE51 /* DataModel.xcdatamodeld in Sources */,
 				2B5333002540DE140022BC32 /* PlantCell.swift in Sources */,
 				2B581139254355440060792A /* MoreViewController.swift in Sources */,
 				2B58113C2543572B0060792A /* FeedbackViewController.swift in Sources */,
@@ -527,6 +531,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2B58DE562545A228008DAE51 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2B58DE572545A228008DAE51 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 2B58DE572545A228008DAE51 /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2BC006EF253F96680094C606 /* Project object */;
 }

@@ -8,15 +8,18 @@
 import UIKit
 import SwipeCellKit
 import UserNotifications
-import GoogleMobileAds
+import CoreData
 
-class PlantsTableViewController: UITableViewController, UIViewControllerPreviewingDelegate, UNUserNotificationCenterDelegate, GADUnifiedNativeAdLoaderDelegate  {
+
+class PlantsTableViewController: UITableViewController, UIViewControllerPreviewingDelegate, UNUserNotificationCenterDelegate {
     
     
     
     @IBOutlet var plantsTableView: UITableView!
     var Plants: [Plant] = []
-    var adLoader: GADAdLoader!
+    
+    //refers to the lazy var in the appdelegate file!
+    var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,10 +39,11 @@ class PlantsTableViewController: UITableViewController, UIViewControllerPreviewi
         //register custom cell design!
         tableView.register(UINib(nibName: WMConstant.CustomCell.plantCellNibName, bundle: nil), forCellReuseIdentifier: WMConstant.CustomCell.plantCellIdentifier)
         
-        Plants = [
-            Plant(name: "Olivio", image: UIImage(named: "olivio") ?? UIImage(systemName: "leaf")! ),
-            Plant(name: "Tomatino", image: UIImage(named: "tomatino") ?? UIImage(systemName: "leaf")!),
-            Plant(name: "Spicy", image: UIImage(named: "spicy") ?? UIImage(systemName: "leaf")!)]
+        loadPlants()
+        //Plants = [
+        //    Plant(name: "Olivio", image: UIImage(named: "olivio") ?? UIImage(systemName: "leaf")! ),
+        //    Plant(name: "Tomatino", image: UIImage(named: "tomatino") ?? UIImage(systemName: "leaf")!),
+        //    Plant(name: "Spicy", image: UIImage(named: "spicy") ?? UIImage(systemName: "leaf")!)]
         
         //Asking user for permission using the provisorial scheme!
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound, .provisional]) { success, error in
@@ -50,14 +54,7 @@ class PlantsTableViewController: UITableViewController, UIViewControllerPreviewi
             }
         }
         
-        let multipleAdsOptions = GADMultipleAdsAdLoaderOptions()
-            multipleAdsOptions.numberOfAds = 5
-
-            adLoader = GADAdLoader(adUnitID: "ca-app-pub-3940256099942544/3986624511", rootViewController: self,
-                adTypes: [GADAdLoaderAdType.unifiedNative],
-                options: [multipleAdsOptions])
-            adLoader.delegate = self
-            adLoader.load(GADRequest())
+        
     }
     
     @IBAction func addPlantButtonPressed(_ sender: UIBarButtonItem) {
@@ -80,14 +77,22 @@ class PlantsTableViewController: UITableViewController, UIViewControllerPreviewi
         let plant = Plants[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: WMConstant.CustomCell.plantCellIdentifier, for: indexPath) as! PlantCell
-        cell.label.text = plant.name
-        cell.plantImageView.image = plant.image
+        cell.label.text = plant.plantName
+        cell.plantImageView.image = UIImage(data: plant.plantImage!)
         cell.delegate = self //delegate for the swipe kit
         
         return cell
     }
     
+    //MARK: - Model Manipulation Methods
     
+    func loadPlants(with request: NSFetchRequest<Plant> = Plant.fetchRequest()) {
+            do {
+                Plants = try context.fetch(request)
+            } catch {
+                print("Error loading category array \(error)")
+            }
+    }
     
     //MARK: - Row Interaction
     
@@ -103,8 +108,8 @@ class PlantsTableViewController: UITableViewController, UIViewControllerPreviewi
         //Only executed for the transition to the detail View!
         if let destinationVC = segue.destination as? PlantDetailsViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
-                destinationVC.selectedPlant = Plants[indexPath.row].name
-                destinationVC.selectedPlantImage = Plants[indexPath.row].image
+                destinationVC.selectedPlant = Plants[indexPath.row].plantName
+                destinationVC.selectedPlantImage = UIImage(data:Plants[indexPath.row].plantImage!)
             }
         } else if let destinationVC = segue.destination as? AddPlantViewController {
                 destinationVC.callingViewController = self
@@ -119,8 +124,8 @@ class PlantsTableViewController: UITableViewController, UIViewControllerPreviewi
         guard let cell = plantsTableView?.cellForRow(at: indexPath) else { return nil }
         guard let detailVC = storyboard?.instantiateViewController(withIdentifier: WMConstant.StoryBoardID.PlantDetailsViewController) as? PlantDetailsViewController else { return nil }
         
-        detailVC.selectedPlant = Plants[indexPath.row].name
-        detailVC.selectedPlantImage = Plants[indexPath.row].image
+        detailVC.selectedPlant = Plants[indexPath.row].plantName
+        detailVC.selectedPlantImage = UIImage(data:Plants[indexPath.row].plantImage!)
         
         detailVC.preferredContentSize = CGSize(width: 0.0, height: 300)
         
@@ -213,67 +218,7 @@ extension PlantsTableViewController: SwipeTableViewCellDelegate {
         
     }
     
-    //MARK: - Add Loader (Google Adds Functions)
-    func adLoader(_ adLoader: GADAdLoader,
-                    didReceive nativeAd: GADUnifiedNativeAd) {
-        // A unified native ad has loaded, and can be displayed.
-        print("Received Add")
-        let alert = UIAlertController(title: nativeAd.headline, message: nativeAd.body, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: .none))
-        var imageView = UIImageView(frame: CGRect(x: 220, y: 10, width: 40, height: 40))
-        imageView.image = (nativeAd.mediaContent.mainImage ?? UIImage(systemName: "leaf"))
-        alert.view.addSubview(imageView)
-        
-        present(alert, animated: true, completion: nil)
-
-      }
-
-      func adLoaderDidFinishLoading(_ adLoader: GADAdLoader) {
-          // The adLoader has finished loading ads, and a new request can be sent.
-        print("AddLoader has finished Loading")
-        let alert = UIAlertController(title: "Finished", message: "Addloader did finish loading", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: .none))
-        present(alert, animated: true, completion: nil)
-      }
-    
-    public func adLoader(_ adLoader: GADAdLoader,
-                         didFailToReceiveAdWithError error: GADRequestError){
-        //Handling failed requests
-        print("Addloader Failed to recieve!")
-        print(error)
-        let alert = UIAlertController(title: "Error", message: "Error has accured", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: .none))
-        present(alert, animated: true, completion: nil)
-    }
-    
-    
-    
-    //MARK: - Native Adds (Google Adds Functions)
-    
-    func nativeAdDidRecordImpression(_ nativeAd: GADUnifiedNativeAd) {
-      // The native ad was shown.
-    }
-
-    func nativeAdDidRecordClick(_ nativeAd: GADUnifiedNativeAd) {
-      // The native ad was clicked on.
-    }
-
-    func nativeAdWillPresentScreen(_ nativeAd: GADUnifiedNativeAd) {
-      // The native ad will present a full screen view.
-    }
-
-    func nativeAdWillDismissScreen(_ nativeAd: GADUnifiedNativeAd) {
-      // The native ad will dismiss a full screen view.
-    }
-
-    func nativeAdDidDismissScreen(_ nativeAd: GADUnifiedNativeAd) {
-      // The native ad did dismiss a full screen view.
-    }
-
-    func nativeAdWillLeaveApplication(_ nativeAd: GADUnifiedNativeAd) {
-      // The native ad will cause the application to become inactive and
-      // open a new application.
-    }
+   
     
 }
 

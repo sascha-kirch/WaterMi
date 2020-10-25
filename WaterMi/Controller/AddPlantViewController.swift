@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class AddPlantViewController: UIViewController , UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -14,6 +15,9 @@ class AddPlantViewController: UIViewController , UITextFieldDelegate, UIImagePic
     var selectedPlantImage: UIImage?
     var callingViewController : PlantsTableViewController?
     var imagePickerController : UIImagePickerController = UIImagePickerController()
+    
+    //refers to the lazy var in the appdelegate file!
+    var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @IBOutlet weak var plantImageView: UIImageView!
     @IBOutlet weak var plantNameTextField: UITextField!
@@ -46,8 +50,13 @@ class AddPlantViewController: UIViewController , UITextFieldDelegate, UIImagePic
     
     @IBAction func addButtonPressed(_ sender: UIButton) {
         if let viewController = callingViewController {
-            viewController.Plants.append(Plant(name: plantNameTextField.text ?? "EMPTY NAME TEXTFIELD" , image:plantImageView.image!))
-            viewController.tableView.reloadData()
+            let newPlant = Plant(context: context)
+            newPlant.plantName = plantNameTextField.text ?? "EMPTY NAME TEXTFIELD"
+            newPlant.plantImage = plantImageView.image!.pngData()
+            
+            viewController.Plants.append(newPlant)
+            saveItems()
+            
         }
         dismiss(animated: true, completion: nil)
     }
@@ -55,6 +64,19 @@ class AddPlantViewController: UIViewController , UITextFieldDelegate, UIImagePic
     @IBAction func cancelButtonPressed(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    //MARK: - Model Manipulation Methods
+    
+    func saveItems() {
+        do {
+            try context.save()
+        } catch {
+            print("Error encoding item array \(error)")
+        }
+        
+        callingViewController?.tableView.reloadData()
+    }
+
     
     //MARK: - UITextFieldDelegates
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
