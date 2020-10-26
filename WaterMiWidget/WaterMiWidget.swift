@@ -7,47 +7,33 @@
 
 import WidgetKit
 import SwiftUI
-import CoreData
 
 struct Provider: TimelineProvider {
     
-    // MARK: - Core Data stack
+    let plantDatabaseManager = PlantDatabaseManager()
     
     /**View that is presented while the Widget is loading!*/
-    func placeholder(in context: Context) -> SimpleEntry {
-        return SimpleEntry(date: Date(), plantName:"Olivio", plantImage: UIImage(named: "WaterMi_Image")!)
+    func placeholder(in context: Context) -> PlantEntry {
+        return PlantEntry(date: Date(), plantName: "Olivio", plantImage: UIImage(named: "WaterMi_Image")!)
     }
     
-    //  func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-    //      let Plants:[Plant] = loadPlants()
-    //      let entry = SimpleEntry(date: Date(), plantName: Plants[0].plantName ?? "No Plant yet", plantImage: UIImage(data:Plants[0].plantImage!) ?? UIImage(named: //"WaterMi_Image")!)
-    //      completion(entry)
-    //  }
-    //
-    //  func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-    //      var entries: [SimpleEntry] = []
-    //      let Plants:[Plant] = loadPlants()
-    //
-    //      // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-    //      let currentDate = Date()
-    //      for hourOffset in 0 ..< 5 {
-    //          let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-    //          let entry = SimpleEntry(date: Date(), plantName: Plants[0].plantName ?? "No Plant yet", plantImage: UIImage(data:Plants[0].plantImage!) ?? UIImage(named: //"WaterMi_Image")!)
-    //          entries.append(entry)
-    //      }
-    
-    func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), plantName:"Olivio", plantImage: UIImage(named: "WaterMi_Image")!)
+    /**Snapshot is used to display widget in the widget center as preview*/
+    func getSnapshot(in context: Context, completion: @escaping (PlantEntry) -> ()) {
+        let entry = PlantEntry(date: Date(), plantName: "Olivio", plantImage: UIImage(named: "WaterMi_Image")!)
     }
     
+    /**Time line when the widget is presented and updated. */
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [SimpleEntry] = []
+        var entries: [PlantEntry] = []
+        let plants = plantDatabaseManager.loadPlants()
         
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: Date(), plantName:"Olivio", plantImage: UIImage(named: "WaterMi_Image")!)
+        
+        //TODO: Methode macht aktuell noch keinen sinn da jede stunde die gleichen aktuellen daten eingesetzt werden.
+        for minuteOffset in 0 ..< plants.count {
+            let entryDate = Calendar.current.date(byAdding: .second, value: minuteOffset * 5, to: currentDate)!
+            let entry = PlantEntry(date: entryDate, plantName: plants[minuteOffset].plantName!, plantImage: UIImage(data: plants[minuteOffset].plantImage!)!)
             entries.append(entry)
         }
         
@@ -57,57 +43,121 @@ struct Provider: TimelineProvider {
 }
 
 /**Description of the Data that will be presented in the Widget*/
-struct SimpleEntry: TimelineEntry {
+struct PlantEntry: TimelineEntry {
     let date: Date
     
-    var plantName : String
-    var plantImage : UIImage
+    let plantName:String
+    let plantImage:UIImage
 }
 
+/**UI Representation of the widget*/
 struct WaterMiWidgetEntryView : View {
     var entry: Provider.Entry
+    @Environment(\.widgetFamily) private var widgetFamily
+    @Environment(\.colorScheme) private var colorScheme
+    
+    
     
     var body: some View {
+        
         ZStack{
-            VStack(alignment: .center, spacing: 4) {
-                HStack(alignment: .center, spacing: 4, content: {
-                    Image(uiImage: entry.plantImage)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 50, height: 50)
-                        .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
-                        .overlay(Circle().stroke(Color.black, lineWidth: 1))
-                    Text(entry.plantName)
-                })
-                
-                Text(entry.date, style: .time)
-            }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
-            .padding()
-            .background(LinearGradient(gradient: Gradient(colors: [.yellow,.green ]), startPoint: .topLeading, endPoint: .bottomTrailing))
-            //Link(destination: , label: {
-            //    /*@START_MENU_TOKEN@*/Text("Link")/*@END_MENU_TOKEN@*/
-            //})
+            if colorScheme == .light {
+                VStack(alignment: .leading, spacing: 4) {
+                    HStack(alignment: .center, spacing: 4, content: {
+                        Image(uiImage: entry.plantImage)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 50, height: 50)
+                            .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+                            .overlay(Circle().stroke(Color.black, lineWidth: 1))
+                        Text(entry.plantName)
+                    })
+                    if widgetFamily == .systemSmall {
+                        Divider()
+                        HStack(alignment: .center, spacing: 4, content: {
+                            Image(uiImage: entry.plantImage)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 50, height: 50)
+                                .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+                                .overlay(Circle().stroke(Color.black, lineWidth: 1))
+                            Text(entry.plantName)
+                        })
+                    }
+                }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
+                .padding()
+                .background(LinearGradient(gradient: Gradient(colors: [.yellow,.green ]), startPoint: .topLeading, endPoint: .bottomTrailing))
+            } else {
+                VStack(alignment: .leading, spacing: 4) {
+                    HStack(alignment: .center, spacing: 4, content: {
+                        Image(uiImage: entry.plantImage)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 50, height: 50)
+                            .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+                            .overlay(Circle().stroke(Color.black, lineWidth: 1))
+                        Text(entry.plantName)
+                    })
+                    if widgetFamily == .systemSmall {
+                        Divider()
+                        HStack(alignment: .center, spacing: 4, content: {
+                            Image(uiImage: entry.plantImage)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 50, height: 50)
+                                .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+                                .overlay(Circle().stroke(Color.black, lineWidth: 1))
+                            Text(entry.plantName)
+                        })
+                    }
+                }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
+                .padding()
+                .background(LinearGradient(gradient: Gradient(colors: [.orange,.blue ]), startPoint: .topLeading, endPoint: .bottomTrailing))
+            }
         }
     }
 }
-
-/**Info of the widget that will be displayed when setting up the Widget!*/
-@main
-struct WaterMiWidget: Widget {
-    let kind: String = "WaterMiWidget"
     
-    var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: Provider()) { entry in
-            WaterMiWidgetEntryView(entry: entry)
+    /**Info of the widget that will be displayed when setting up the Widget!*/
+    @main
+    struct WaterMiWidget: Widget {
+        let kind: String = "WaterMiWidget"
+        
+        var body: some WidgetConfiguration {
+            StaticConfiguration(kind: kind, provider: Provider()) { entry in
+                WaterMiWidgetEntryView(entry: entry)
+            }
+            .configurationDisplayName("WaterMi Plant Status")
+            .description("Shows the current WaterMi reminders and watering status")
         }
-        .configurationDisplayName("WaterMi Plant Status")
-        .description("Shows the current WaterMi reminders and watering status")
     }
-}
+    
+    struct WaterMiWidget_Previews: PreviewProvider {
+        static var previews: some View {
+            WaterMiWidgetEntryView(entry: PlantEntry(date: Date(), plantName: "Olivio", plantImage: UIImage(named: "WaterMi_Image")!))
+                .previewContext(WidgetPreviewContext(family: .systemSmall))
+                .environment(\.colorScheme, .dark)
+            
+            WaterMiWidgetEntryView(entry: PlantEntry(date: Date(), plantName: "Olivio", plantImage: UIImage(named: "WaterMi_Image")!))
+                .previewContext(WidgetPreviewContext(family: .systemMedium))
+                .environment(\.colorScheme, .dark)
+            
+            WaterMiWidgetEntryView(entry: PlantEntry(date: Date(), plantName: "Olivio", plantImage: UIImage(named: "WaterMi_Image")!))
+                .previewContext(WidgetPreviewContext(family: .systemLarge))
+                .environment(\.colorScheme, .dark)
+            
+            WaterMiWidgetEntryView(entry: PlantEntry(date: Date(), plantName: "Olivio", plantImage: UIImage(named: "WaterMi_Image")!))
+                .previewContext(WidgetPreviewContext(family: .systemSmall))
+                .environment(\.colorScheme, .light)
+            
+            WaterMiWidgetEntryView(entry: PlantEntry(date: Date(), plantName: "Olivio", plantImage: UIImage(named: "WaterMi_Image")!))
+                .previewContext(WidgetPreviewContext(family: .systemMedium))
+                .environment(\.colorScheme, .light)
+            
+            WaterMiWidgetEntryView(entry: PlantEntry(date: Date(), plantName: "Olivio", plantImage: UIImage(named: "WaterMi_Image")!))
+                .previewContext(WidgetPreviewContext(family: .systemLarge))
+                .environment(\.colorScheme, .light)
+        }
+    }
 
-struct WaterMiWidget_Previews: PreviewProvider {
-    static var previews: some View {
-        WaterMiWidgetEntryView(entry: SimpleEntry(date: Date(), plantName:"Olivio", plantImage: UIImage(named: "WaterMi_Image")!))
-            .previewContext(WidgetPreviewContext(family: .systemSmall))
-    }
-}
+

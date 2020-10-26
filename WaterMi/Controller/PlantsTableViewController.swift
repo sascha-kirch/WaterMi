@@ -8,7 +8,6 @@
 import UIKit
 import SwipeCellKit
 import UserNotifications
-import CoreData
 
 
 class PlantsTableViewController: UITableViewController, UIViewControllerPreviewingDelegate, UNUserNotificationCenterDelegate {
@@ -172,6 +171,7 @@ extension PlantsTableViewController: SwipeTableViewCellDelegate {
                 self.plantDatabaseManger.deletePlant(plant: self.Plants[indexPath.row])
                 self.Plants.remove(at: indexPath.row) //IMPORTANT: first the context, then the array! If not ndex out of range
                 self.plantDatabaseManger.savePlants()
+                
             }
         }
         // customize the action appearance

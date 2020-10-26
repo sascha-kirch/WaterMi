@@ -18,7 +18,6 @@
 		2B3FE1B02546BFCA00A7C07E /* WidgetContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3FE1AE2546BFCA00A7C07E /* WidgetContent.swift */; };
 		2B3FE1B52546F1CB00A7C07E /* AdCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B3FE1B42546F1CB00A7C07E /* AdCell.xib */; };
 		2B3FE1B92546F1E900A7C07E /* AdCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3FE1B82546F1E900A7C07E /* AdCell.swift */; };
-		2B3FE1C3254709F200A7C07E /* ClassExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3FE1C2254709F200A7C07E /* ClassExtensions.swift */; };
 		2B5332FD2540DAAC0022BC32 /* PlantCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B5332FC2540DAAC0022BC32 /* PlantCell.xib */; };
 		2B5333002540DE140022BC32 /* PlantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5332FF2540DE140022BC32 /* PlantCell.swift */; };
 		2B5333042540E3A80022BC32 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5333032540E3A80022BC32 /* Constants.swift */; };
@@ -34,8 +33,8 @@
 		2B6D6A7C25408D4200025870 /* PlantDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D6A7B25408D4200025870 /* PlantDetailsViewController.swift */; };
 		2B7F721C2544188A005C302A /* FeedbackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B7F721B2544188A005C302A /* FeedbackCell.xib */; };
 		2B7F721F2544190D005C302A /* FeedbackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7F721E2544190D005C302A /* FeedbackCell.swift */; };
-		2BAB194125471B7900785ABF /* ClassExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3FE1C2254709F200A7C07E /* ClassExtensions.swift */; };
 		2BAB1945254727DE00785ABF /* PlantDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAB1944254727DE00785ABF /* PlantDatabaseManager.swift */; };
+		2BAB195B25473A3E00785ABF /* PlantDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAB1944254727DE00785ABF /* PlantDatabaseManager.swift */; };
 		2BC006FB253F96680094C606 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC006FA253F96680094C606 /* AppDelegate.swift */; };
 		2BC006FD253F96680094C606 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC006FC253F96680094C606 /* SceneDelegate.swift */; };
 		2BC00702253F96680094C606 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BC00700253F96680094C606 /* Main.storyboard */; };
@@ -79,7 +78,6 @@
 		2B3FE1B42546F1CB00A7C07E /* AdCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdCell.xib; sourceTree = "<group>"; };
 		2B3FE1B82546F1E900A7C07E /* AdCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdCell.swift; sourceTree = "<group>"; };
 		2B3FE1BE254707A500A7C07E /* WaterMi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WaterMi.entitlements; sourceTree = "<group>"; };
-		2B3FE1C2254709F200A7C07E /* ClassExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassExtensions.swift; sourceTree = "<group>"; };
 		2B5332FC2540DAAC0022BC32 /* PlantCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlantCell.xib; sourceTree = "<group>"; };
 		2B5332FF2540DE140022BC32 /* PlantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantCell.swift; sourceTree = "<group>"; };
 		2B5333032540E3A80022BC32 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -98,6 +96,7 @@
 		2B7F721B2544188A005C302A /* FeedbackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedbackCell.xib; sourceTree = "<group>"; };
 		2B7F721E2544190D005C302A /* FeedbackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackCell.swift; sourceTree = "<group>"; };
 		2BAB1944254727DE00785ABF /* PlantDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantDatabaseManager.swift; sourceTree = "<group>"; };
+		2BAB196225473CBE00785ABF /* WaterMiWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WaterMiWidgetExtension.entitlements; sourceTree = "<group>"; };
 		2BC006F7253F96680094C606 /* WaterMi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaterMi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BC006FA253F96680094C606 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2BC006FC253F96680094C606 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -142,6 +141,7 @@
 		2B215717253F9E3600B815DB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2BAB1944254727DE00785ABF /* PlantDatabaseManager.swift */,
 				2B58DE562545A228008DAE51 /* DataModel.xcdatamodeld */,
 			);
 			path = Model;
@@ -174,7 +174,6 @@
 				2B6D6A7B25408D4200025870 /* PlantDetailsViewController.swift */,
 				2B581138254355440060792A /* MoreViewController.swift */,
 				2B58113B2543572B0060792A /* FeedbackViewController.swift */,
-				2BAB1944254727DE00785ABF /* PlantDatabaseManager.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -194,7 +193,6 @@
 			isa = PBXGroup;
 			children = (
 				2B6A17322541A7E100B9B4EA /* ControllerExtensions.swift */,
-				2B3FE1C2254709F200A7C07E /* ClassExtensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -202,6 +200,7 @@
 		2BC006EE253F96680094C606 = {
 			isa = PBXGroup;
 			children = (
+				2BAB196225473CBE00785ABF /* WaterMiWidgetExtension.entitlements */,
 				2BC006F9253F96680094C606 /* WaterMi */,
 				2B3FE19D2546BD0200A7C07E /* WaterMiWidget */,
 				2BC006F8253F96680094C606 /* Products */,
@@ -413,9 +412,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BAB195B25473A3E00785ABF /* PlantDatabaseManager.swift in Sources */,
 				2B3FE1B02546BFCA00A7C07E /* WidgetContent.swift in Sources */,
 				2B3FE19F2546BD0200A7C07E /* WaterMiWidget.swift in Sources */,
-				2BAB194125471B7900785ABF /* ClassExtensions.swift in Sources */,
 				2B3FE1AB2546BE8F00A7C07E /* DataModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -429,7 +428,6 @@
 				2B6D6A7825408C3300025870 /* AddPlantViewController.swift in Sources */,
 				2BAB1945254727DE00785ABF /* PlantDatabaseManager.swift in Sources */,
 				2B6D6A71254087B900025870 /* SettingViewController.swift in Sources */,
-				2B3FE1C3254709F200A7C07E /* ClassExtensions.swift in Sources */,
 				2B6D6A75254087F300025870 /* UserViewController.swift in Sources */,
 				2BC006FB253F96680094C606 /* AppDelegate.swift in Sources */,
 				2BC006FD253F96680094C606 /* SceneDelegate.swift in Sources */,
@@ -481,6 +479,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = WaterMiWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T9W6LK9ZA4;
 				INFOPLIST_FILE = WaterMiWidget/Info.plist;
@@ -503,6 +502,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = WaterMiWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T9W6LK9ZA4;
 				INFOPLIST_FILE = WaterMiWidget/Info.plist;

@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import CoreData
 
 class AddPlantViewController: UIViewController , UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
