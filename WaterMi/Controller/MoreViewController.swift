@@ -102,20 +102,7 @@ class MoreViewController: UIViewController , GADUnifiedNativeAdLoaderDelegate {
     }
     
     //MARK: - Add Loader (Google Adds Functions)
-   // func adLoader(_ adLoader: GADAdLoader,
-   //                 didReceive nativeAd: GADUnifiedNativeAd) {
-   //     // A unified native ad has loaded, and can be displayed.
-   //     print("Received Add")
-   //     let alert = UIAlertController(title: nativeAd.headline, message: nativeAd.body, preferredStyle: //.alert)
-   //     alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: .none))
-   //     let imageView = UIImageView(frame: CGRect(x: 0, y: 10, width: 40, height: 40))
-   //     imageView.image = (nativeAd.icon?.image ?? UIImage(systemName: "leaf"))
-   //     alert.view.addSubview(imageView)
-   //
-   //     present(alert, animated: true, completion: nil)
-//
-   //   }
-    
+
     func adLoader(_ adLoader: GADAdLoader, didReceive nativeAd: GADUnifiedNativeAd) {
       print("Received unified native ad: \(nativeAd)")
       //refreshAdButton.isEnabled = true

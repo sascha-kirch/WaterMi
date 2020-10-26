@@ -8,16 +8,21 @@
 import UIKit
 import SwipeCellKit
 
+@IBDesignable
 class PlantCell : SwipeTableViewCell {
     
     @IBOutlet weak var plantImageView: UIImageView!
-    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var plantNameLabel: UILabel!
     @IBOutlet weak var card: UIView!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var timeLeftLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        setupLayers()
+    }
+    
+    fileprivate func setupLayers() {
         stackView.layer.cornerRadius = card.frame.size.height / 5 //rounden the card shape
         
         timeLeftLabel.text = "23h"
@@ -33,7 +38,6 @@ class PlantCell : SwipeTableViewCell {
         stackView.layer.shadowOffset = CGSize(width: 0, height: 2)
         stackView.layer.shadowRadius = 2.0
         stackView.layer.isGeometryFlipped = false
-        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

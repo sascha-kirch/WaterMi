@@ -43,6 +43,4 @@ class FeedbackViewController: UITableViewController {
         cell.feedbackCellImageView.image = UIImage(systemName: rowImages[indexPath.section]![indexPath.row])
         return cell
     }
-    
-    
 }

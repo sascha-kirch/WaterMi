@@ -83,8 +83,8 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="card" destination="bJQ-d3-jcG" id="ifv-YW-y7i"/>
-                <outlet property="label" destination="424-0N-Gvh" id="4QC-BF-B6a"/>
                 <outlet property="plantImageView" destination="M2u-cQ-NCB" id="ehO-2T-TNx"/>
+                <outlet property="plantNameLabel" destination="424-0N-Gvh" id="4QC-BF-B6a"/>
                 <outlet property="stackView" destination="8jj-45-N1x" id="6J2-7M-c03"/>
                 <outlet property="timeLeftLabel" destination="tKM-fh-X7z" id="iTX-GD-F7x"/>
             </connections>

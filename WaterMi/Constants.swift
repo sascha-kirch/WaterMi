@@ -11,10 +11,12 @@ import Foundation
 struct WMConstant {
     
     struct CustomCell{
-    static let plantCellIdentifier = "ReusablePlantCell"
-    static let plantCellNibName = "PlantCell"
+        static let plantCellIdentifier = "ReusablePlantCell"
+        static let plantCellNibName = "PlantCell"
         static let feedbackCellIdentifier = "ReusableFeedbackCell"
         static let feedbackCellNibName = "FeedbackCell"
+        static let adCellIdentifier = "ReusableAdCell"
+        static let adCellNibName = "AdCell"
     }
     
     struct SegueID {

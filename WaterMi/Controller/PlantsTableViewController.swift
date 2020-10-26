@@ -12,14 +12,11 @@ import CoreData
 
 
 class PlantsTableViewController: UITableViewController, UIViewControllerPreviewingDelegate, UNUserNotificationCenterDelegate {
-    
-    
-    
+
     @IBOutlet var plantsTableView: UITableView!
     var Plants: [Plant] = []
     
-    //refers to the lazy var in the appdelegate file!
-    var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let plantDatabaseManger = PlantDatabaseManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,18 +25,18 @@ class PlantsTableViewController: UITableViewController, UIViewControllerPreviewi
         if( traitCollection.forceTouchCapability == .available){
             registerForPreviewing(with: self, sourceView: plantsTableView)
         }
+        
         plantsTableView.delegate = self
         plantsTableView.dataSource = self
         UNUserNotificationCenter.current().delegate = self
-        setCategories()
-        
-        //tableView.rowHeight = 80
-        tableView.separatorStyle = .none
+        setNotificationCategories()
         
         //register custom cell design!
         tableView.register(UINib(nibName: WMConstant.CustomCell.plantCellNibName, bundle: nil), forCellReuseIdentifier: WMConstant.CustomCell.plantCellIdentifier)
+        tableView.register(UINib(nibName: WMConstant.CustomCell.adCellNibName, bundle: nil), forCellReuseIdentifier: WMConstant.CustomCell.adCellIdentifier)
         
-        loadPlants()
+        //Load Plants
+        Plants = plantDatabaseManger.loadPlants()
         
         //Asking user for permission using the provisorial scheme!
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound, .provisional]) { success, error in
@@ -54,11 +51,11 @@ class PlantsTableViewController: UITableViewController, UIViewControllerPreviewi
     @IBAction func addPlantButtonPressed(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: WMConstant.SegueID.addPlantView, sender: self)
     }
+    
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return Plants.count
     }
     
@@ -71,31 +68,11 @@ class PlantsTableViewController: UITableViewController, UIViewControllerPreviewi
         let plant = Plants[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: WMConstant.CustomCell.plantCellIdentifier, for: indexPath) as! PlantCell
-        cell.label.text = plant.plantName
+        cell.plantNameLabel.text = plant.plantName
         cell.plantImageView.image = UIImage(data: plant.plantImage!)
         cell.delegate = self //delegate for the swipe kit
         
         return cell
-    }
-    
-    //MARK: - Model Manipulation Methods
-    
-    func loadPlants(with request: NSFetchRequest<Plant> = Plant.fetchRequest()) {
-            do {
-                Plants = try context.fetch(request)
-            } catch {
-                print("Error loading category array \(error)")
-            }
-    }
-    
-    func savePlants() {
-        do {
-            try context.save()
-        } catch {
-            print("Error encoding item array \(error)")
-        }
-        
-        //tableView.reloadData() -> No update required since it is done by the swipe controller. If you do it, it will result in an exception!!!!
     }
     
     //MARK: - Row Interaction
@@ -130,7 +107,6 @@ class PlantsTableViewController: UITableViewController, UIViewControllerPreviewi
         
         detailVC.selectedPlant = Plants[indexPath.row].plantName
         detailVC.selectedPlantImage = UIImage(data:Plants[indexPath.row].plantImage!)
-        
         detailVC.preferredContentSize = CGSize(width: 0.0, height: 300)
         
         previewingContext.sourceRect = cell.frame
@@ -171,7 +147,7 @@ class PlantsTableViewController: UITableViewController, UIViewControllerPreviewi
         UNUserNotificationCenter.current().add(request)
     }
     
-    func setCategories(){
+    func setNotificationCategories(){
         let waterAction = UNNotificationAction(identifier: "waterAction", title: "Watered!", options: [])
         let postponeAction = UNNotificationAction(identifier: "postponeAction", title: "Remind me later!", options: [])
     
@@ -193,10 +169,9 @@ extension PlantsTableViewController: SwipeTableViewCellDelegate {
             // handle action by updating model with deletion
             if indexPath.row < self.Plants.count {
 
-                self.context.delete(self.Plants[indexPath.row])
+                self.plantDatabaseManger.deletePlant(plant: self.Plants[indexPath.row])
                 self.Plants.remove(at: indexPath.row) //IMPORTANT: first the context, then the array! If not ndex out of range
-                self.savePlants()
-                
+                self.plantDatabaseManger.savePlants()
             }
         }
         // customize the action appearance
@@ -214,7 +189,6 @@ extension PlantsTableViewController: SwipeTableViewCellDelegate {
         editAction.image = UIImage(named: "pencil")
         editAction.backgroundColor = UIColor.orange
         
-        
         return [deleteAction, editAction]
     }
     
@@ -225,6 +199,5 @@ extension PlantsTableViewController: SwipeTableViewCellDelegate {
         options.expansionStyle = .destructive
         return options
     }
-
 }
 

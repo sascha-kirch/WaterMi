@@ -9,7 +9,7 @@ import UIKit
 import CoreData
 
 class AddPlantViewController: UIViewController , UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
-
+    
     var inEditMode = false
     var selectedPlant: String?
     var selectedPlantImage: UIImage?
@@ -17,8 +17,7 @@ class AddPlantViewController: UIViewController , UITextFieldDelegate, UIImagePic
     var imagePickerController : UIImagePickerController = UIImagePickerController()
     let intervallData = ["Dayly","Weekly","Monthly"]
     
-    //refers to the lazy var in the appdelegate file!
-    var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let plantDatabaseManger = PlantDatabaseManager()
     
     @IBOutlet weak var plantImageView: UIImageView!
     @IBOutlet weak var plantNameTextField: UITextField!
@@ -52,40 +51,22 @@ class AddPlantViewController: UIViewController , UITextFieldDelegate, UIImagePic
         plantImageView.clipsToBounds = true
         
         self.imagePickerController.allowsEditing = true
-        
-        // intervallPickerView.isHidden = true
-        
     }
     
     //MARK: - Buttons
     
     @IBAction func addButtonPressed(_ sender: UIButton) {
         if let viewController = callingViewController {
-            let newPlant = Plant(context: context)
-            newPlant.plantName = plantNameTextField.text ?? "EMPTY NAME TEXTFIELD"
-            newPlant.plantImage = plantImageView.image!.pngData()
             
+            let newPlant = plantDatabaseManger.addNewPlantToContext(plantName: plantNameTextField.text, plantImage: plantImageView.image)
             viewController.Plants.append(newPlant)
-            saveItems()
-            
+            callingViewController?.tableView.reloadData()
         }
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func cancelButtonPressed(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
-    }
-    
-    //MARK: - Model Manipulation Methods
-    
-    func saveItems() {
-        do {
-            try context.save()
-        } catch {
-            print("Error encoding item array \(error)")
-        }
-        
-        callingViewController?.tableView.reloadData()
     }
     
     
@@ -112,8 +93,7 @@ class AddPlantViewController: UIViewController , UITextFieldDelegate, UIImagePic
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
-            // What will happen once, user clicks the add Item button in the alert!
-            
+            // What will happen once, user clicks the add Item button in the alert! 
         }
         
         alert.addAction(cameraAction)
@@ -133,7 +113,6 @@ class AddPlantViewController: UIViewController , UITextFieldDelegate, UIImagePic
         self.dismiss(animated: true, completion: nil)
     }
     
-    
     //MARK: - PickerView
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -146,7 +125,6 @@ class AddPlantViewController: UIViewController , UITextFieldDelegate, UIImagePic
             return intervallData.count
         default: return 0
         }
-        
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -155,16 +133,5 @@ class AddPlantViewController: UIViewController , UITextFieldDelegate, UIImagePic
             return intervallData[row]
         default: return nil
         }
-        
     }
-    
-   // func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-   //     switch(pickerView){
-   //     case intervallPickerView:
-   //         //intervallButton.titleLabel?.text = intervallData[row]
-   //     default: return
-   //     }
-   // }
-    
-    
 }
