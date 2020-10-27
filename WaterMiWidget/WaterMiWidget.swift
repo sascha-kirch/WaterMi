@@ -59,7 +59,6 @@ struct WaterMiWidgetEntryView : View {
     
     
     var body: some View {
-        
         ZStack{
             if colorScheme == .light {
                 VStack(alignment: .leading, spacing: 4) {
@@ -72,7 +71,7 @@ struct WaterMiWidgetEntryView : View {
                             .overlay(Circle().stroke(Color.black, lineWidth: 1))
                         Text(entry.plantName)
                     })
-                    if widgetFamily == .systemSmall {
+                    if widgetFamily != .systemSmall {
                         Divider()
                         HStack(alignment: .center, spacing: 4, content: {
                             Image(uiImage: entry.plantImage)
@@ -88,6 +87,8 @@ struct WaterMiWidgetEntryView : View {
                 .padding()
                 .background(LinearGradient(gradient: Gradient(colors: [.yellow,.green ]), startPoint: .topLeading, endPoint: .bottomTrailing))
             } else {
+                //dark color scheme
+                
                 VStack(alignment: .leading, spacing: 4) {
                     HStack(alignment: .center, spacing: 4, content: {
                         Image(uiImage: entry.plantImage)
@@ -98,7 +99,7 @@ struct WaterMiWidgetEntryView : View {
                             .overlay(Circle().stroke(Color.black, lineWidth: 1))
                         Text(entry.plantName)
                     })
-                    if widgetFamily == .systemSmall {
+                    if widgetFamily != .systemSmall {
                         Divider()
                         HStack(alignment: .center, spacing: 4, content: {
                             Image(uiImage: entry.plantImage)
@@ -117,47 +118,47 @@ struct WaterMiWidgetEntryView : View {
         }
     }
 }
+
+/**Info of the widget that will be displayed when setting up the Widget!*/
+@main
+struct WaterMiWidget: Widget {
+    let kind: String = "WaterMiWidget"
     
-    /**Info of the widget that will be displayed when setting up the Widget!*/
-    @main
-    struct WaterMiWidget: Widget {
-        let kind: String = "WaterMiWidget"
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: kind, provider: Provider()) { entry in
+            WaterMiWidgetEntryView(entry: entry)
+        }
+        .configurationDisplayName("WaterMi Plant Status")
+        .description("Shows the current WaterMi reminders and watering status")
+    }
+}
+
+struct WaterMiWidget_Previews: PreviewProvider {
+    static var previews: some View {
+        WaterMiWidgetEntryView(entry: PlantEntry(date: Date(), plantName: "Olivio", plantImage: UIImage(named: "WaterMi_Image")!))
+            .previewContext(WidgetPreviewContext(family: .systemSmall))
+            .environment(\.colorScheme, .dark)
         
-        var body: some WidgetConfiguration {
-            StaticConfiguration(kind: kind, provider: Provider()) { entry in
-                WaterMiWidgetEntryView(entry: entry)
-            }
-            .configurationDisplayName("WaterMi Plant Status")
-            .description("Shows the current WaterMi reminders and watering status")
-        }
+        WaterMiWidgetEntryView(entry: PlantEntry(date: Date(), plantName: "Olivio", plantImage: UIImage(named: "WaterMi_Image")!))
+            .previewContext(WidgetPreviewContext(family: .systemMedium))
+            .environment(\.colorScheme, .dark)
+        
+        WaterMiWidgetEntryView(entry: PlantEntry(date: Date(), plantName: "Olivio", plantImage: UIImage(named: "WaterMi_Image")!))
+            .previewContext(WidgetPreviewContext(family: .systemLarge))
+            .environment(\.colorScheme, .dark)
+        
+        WaterMiWidgetEntryView(entry: PlantEntry(date: Date(), plantName: "Olivio", plantImage: UIImage(named: "WaterMi_Image")!))
+            .previewContext(WidgetPreviewContext(family: .systemSmall))
+            .environment(\.colorScheme, .light)
+        
+        WaterMiWidgetEntryView(entry: PlantEntry(date: Date(), plantName: "Olivio", plantImage: UIImage(named: "WaterMi_Image")!))
+            .previewContext(WidgetPreviewContext(family: .systemMedium))
+            .environment(\.colorScheme, .light)
+        
+        WaterMiWidgetEntryView(entry: PlantEntry(date: Date(), plantName: "Olivio", plantImage: UIImage(named: "WaterMi_Image")!))
+            .previewContext(WidgetPreviewContext(family: .systemLarge))
+            .environment(\.colorScheme, .light)
     }
-    
-    struct WaterMiWidget_Previews: PreviewProvider {
-        static var previews: some View {
-            WaterMiWidgetEntryView(entry: PlantEntry(date: Date(), plantName: "Olivio", plantImage: UIImage(named: "WaterMi_Image")!))
-                .previewContext(WidgetPreviewContext(family: .systemSmall))
-                .environment(\.colorScheme, .dark)
-            
-            WaterMiWidgetEntryView(entry: PlantEntry(date: Date(), plantName: "Olivio", plantImage: UIImage(named: "WaterMi_Image")!))
-                .previewContext(WidgetPreviewContext(family: .systemMedium))
-                .environment(\.colorScheme, .dark)
-            
-            WaterMiWidgetEntryView(entry: PlantEntry(date: Date(), plantName: "Olivio", plantImage: UIImage(named: "WaterMi_Image")!))
-                .previewContext(WidgetPreviewContext(family: .systemLarge))
-                .environment(\.colorScheme, .dark)
-            
-            WaterMiWidgetEntryView(entry: PlantEntry(date: Date(), plantName: "Olivio", plantImage: UIImage(named: "WaterMi_Image")!))
-                .previewContext(WidgetPreviewContext(family: .systemSmall))
-                .environment(\.colorScheme, .light)
-            
-            WaterMiWidgetEntryView(entry: PlantEntry(date: Date(), plantName: "Olivio", plantImage: UIImage(named: "WaterMi_Image")!))
-                .previewContext(WidgetPreviewContext(family: .systemMedium))
-                .environment(\.colorScheme, .light)
-            
-            WaterMiWidgetEntryView(entry: PlantEntry(date: Date(), plantName: "Olivio", plantImage: UIImage(named: "WaterMi_Image")!))
-                .previewContext(WidgetPreviewContext(family: .systemLarge))
-                .environment(\.colorScheme, .light)
-        }
-    }
+}
 
 

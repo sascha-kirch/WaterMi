@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 @IBDesignable
 class CircularProgressBar : UIView{
     @IBInspectable var color: UIColor? = .gray {
@@ -25,7 +24,6 @@ class CircularProgressBar : UIView{
       override init(frame: CGRect) {
           super.init(frame: frame)
           setupLayers()
-
       }
 
       required init?(coder: NSCoder) {
@@ -43,7 +41,6 @@ class CircularProgressBar : UIView{
           progressLayer.fillColor = nil
           layer.addSublayer(progressLayer)
           layer.transform = CATransform3DMakeRotation(CGFloat(90 * Double.pi / 180), 0, 0, -1)
-        
       }
 
       override func draw(_ rect: CGRect) {
@@ -56,5 +53,4 @@ class CircularProgressBar : UIView{
           progressLayer.strokeEnd = progress
           progressLayer.strokeColor = color?.cgColor
       }
-    
 }

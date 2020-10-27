@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddPlantViewController: UIViewController , UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+final class AddPlantViewController: UIViewController , UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
     var inEditMode = false
     var selectedPlant: String?
@@ -134,3 +134,44 @@ class AddPlantViewController: UIViewController , UITextFieldDelegate, UIImagePic
         }
     }
 }
+
+//MARK: - Preview
+#if canImport(SwiftUI) && DEBUG
+import SwiftUI
+
+extension AddPlantViewController: UIViewControllerRepresentable {
+    
+  func makeUIViewController(context: Context) -> AddPlantViewController {
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+      guard let viewController =  storyboard.instantiateViewController(
+                identifier: WMConstant.StoryBoardID.AddPlantViewController) as? AddPlantViewController else {
+          fatalError("Cannot load from storyboard")
+      }
+      // Configure the view controller here
+      return viewController
+  }
+
+  func updateUIViewController(_ uiViewController: AddPlantViewController,
+    context: Context) {
+  }
+}
+
+struct AddPlantViewControllerPreviews: PreviewProvider {
+  static var previews: some View {
+    AddPlantViewController()
+        .environment(\.colorScheme, .light)
+        .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
+        .previewDisplayName("iPhone 11")
+    
+    AddPlantViewController()
+        .environment(\.colorScheme, .light)
+        .previewDevice(PreviewDevice(rawValue: "iPad Pro (11-inch) (2nd generation)"))
+        .previewDisplayName("iPad Pro (11-inch) (2nd generation)")
+    
+    AddPlantViewController()
+        .environment(\.colorScheme, .dark)
+        .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
+        .previewDisplayName("iPhone SE")
+  }
+}
+#endif

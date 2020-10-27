@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ReusableStatisticCell" id="FQ3-8U-fNE" customClass="StatisticCell" customModule="WaterMi" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="1LL-dL-HB9">
+                <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="jAG-66-rZA">
+                        <rect key="frame" x="5" y="5" width="150" height="150"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="IiN-wM-ZEj">
+                                <rect key="frame" x="0.0" y="0.0" width="150" height="75"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="j3D-eJ-6Rh">
+                                        <rect key="frame" x="0.0" y="0.0" width="40" height="75"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="4Eb-K0-MTf"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label ist sehr lang" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Drz-bQ-cKa">
+                                        <rect key="frame" x="49" y="0.0" width="101" height="75"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pvq-Na-z7J">
+                                <rect key="frame" x="0.0" y="75" width="150" height="75"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.15906780349999999" green="0.77513227510000005" blue="0.4565320705" alpha="0.49537386709999998" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="150" id="gJz-4h-mPX"/>
+                            <constraint firstAttribute="height" constant="150" id="xPr-Zs-QfY"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="jAG-66-rZA" secondAttribute="bottom" constant="5" id="2WL-ZA-V2u"/>
+                    <constraint firstItem="jAG-66-rZA" firstAttribute="top" secondItem="1LL-dL-HB9" secondAttribute="top" constant="5" id="39h-BH-29g"/>
+                    <constraint firstAttribute="trailing" secondItem="jAG-66-rZA" secondAttribute="trailing" constant="5" id="8H3-Wi-uyT"/>
+                    <constraint firstItem="jAG-66-rZA" firstAttribute="leading" secondItem="1LL-dL-HB9" secondAttribute="leading" constant="5" id="G0X-Qn-mPF"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <size key="customSize" width="152" height="136"/>
+            <connections>
+                <outlet property="card" destination="1LL-dL-HB9" id="nqw-A3-q0s"/>
+                <outlet property="stackView" destination="jAG-66-rZA" id="4hZ-TF-Cfg"/>
+                <outlet property="statisticContent" destination="Pvq-Na-z7J" id="nOv-Ne-III"/>
+                <outlet property="statisticDescription" destination="Drz-bQ-cKa" id="GT0-z2-DJg"/>
+                <outlet property="statisticImageView" destination="j3D-eJ-6Rh" id="S6e-aH-uLr"/>
+            </connections>
+            <point key="canvasLocation" x="-468" y="-9"/>
+        </collectionViewCell>
+    </objects>
+</document>

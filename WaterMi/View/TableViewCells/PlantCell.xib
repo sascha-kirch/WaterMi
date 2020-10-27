@@ -75,10 +75,14 @@
                     </stackView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="8jj-45-N1x" firstAttribute="top" secondItem="bJQ-d3-jcG" secondAttribute="top" constant="5" id="0BI-Zs-2hf"/>
+                    <constraint firstAttribute="bottom" secondItem="8jj-45-N1x" secondAttribute="bottom" constant="5" id="991-Mj-1A5"/>
                     <constraint firstItem="8jj-45-N1x" firstAttribute="leading" secondItem="bJQ-d3-jcG" secondAttribute="leading" constant="5" id="IKK-b8-u4w"/>
                     <constraint firstItem="8jj-45-N1x" firstAttribute="top" secondItem="bJQ-d3-jcG" secondAttribute="top" constant="5" id="LaR-Lm-jOn"/>
                     <constraint firstAttribute="bottom" secondItem="8jj-45-N1x" secondAttribute="bottom" constant="5" id="ce1-mt-Ddy"/>
+                    <constraint firstAttribute="trailing" secondItem="8jj-45-N1x" secondAttribute="trailing" constant="5" id="dpb-sC-Wys"/>
                     <constraint firstAttribute="trailing" secondItem="8jj-45-N1x" secondAttribute="trailing" constant="5" id="pyI-H4-f2p"/>
+                    <constraint firstItem="8jj-45-N1x" firstAttribute="leading" secondItem="bJQ-d3-jcG" secondAttribute="leading" constant="5" id="s81-Q5-Kyk"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -88,7 +92,7 @@
                 <outlet property="stackView" destination="8jj-45-N1x" id="6J2-7M-c03"/>
                 <outlet property="timeLeftLabel" destination="tKM-fh-X7z" id="iTX-GD-F7x"/>
             </connections>
-            <point key="canvasLocation" x="-317" y="-173"/>
+            <point key="canvasLocation" x="-159" y="-164"/>
         </tableViewCell>
     </objects>
     <resources>

@@ -32,12 +32,7 @@ class MoreViewController: UIViewController , GADUnifiedNativeAdLoaderDelegate {
     
     //MARK: - Feedback Related Methods
     
-    enum EfeedbackIndicator {
-        case happy
-        case confused
-        case unhappy
-        case none
-    }
+    
     var feedbackIndicator : EfeedbackIndicator = .none
     
     @IBAction func askForFeedbackButtonPressed(_ sender: UIButton) {
@@ -70,30 +65,43 @@ class MoreViewController: UIViewController , GADUnifiedNativeAdLoaderDelegate {
                 destinationVC.sectionHeaderTitles = ["Section 1", "TELL YOUR FRIENDS"]
                 destinationVC.rowLabels = [
                     0:["Write a Review","Contact the WaterMi Team"],
-                    1:["Tweet about WaterMi","Tell your friends in Facebook"]
+                    1:["Tell your friends about WaterMi"]
+                ]
+                destinationVC.rowActions = [
+                    0:[FeedbackManager.MakeReview, FeedbackManager.ContactDeveloper],
+                    1:[FeedbackManager.ShareApp]
                 ]
                 destinationVC.rowImages = [
                     0:["star","envelope"],
-                    1:["t.circle","f.circle"]
+                    1:["square.and.arrow.up"]
                 ]
+                destinationVC.feedbackIndicator = .happy
             
             case .confused:
                 destinationVC.sectionHeaderTitles = ["Section 1"]
                 destinationVC.rowLabels = [
                     0:["Getting Started Guide","Contact the WaterMi Team"]
                 ]
+                destinationVC.rowActions = [
+                    0:[FeedbackManager.ShowGuide, FeedbackManager.ContactDeveloper]
+                ]
                 destinationVC.rowImages = [
                     0:["person.fill.questionmark","envelope"]
                 ]
+                destinationVC.feedbackIndicator = .confused
             
             case .unhappy:
                 destinationVC.sectionHeaderTitles = ["Section 1"]
                 destinationVC.rowLabels = [
                     0:["Contact the WaterMi Team"]
                 ]
+                destinationVC.rowActions = [
+                    0:[FeedbackManager.ContactDeveloper]
+                ]
                 destinationVC.rowImages = [
                     0:["envelope"]
                 ]
+                destinationVC.feedbackIndicator = .unhappy
             
             default:
                 print("default")
@@ -206,3 +214,5 @@ class MoreViewController: UIViewController , GADUnifiedNativeAdLoaderDelegate {
        print("\(#function) called")
      }
 }
+
+

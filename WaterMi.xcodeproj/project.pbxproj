@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B1EF3CF254857D20006FB8C /* FeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1EF3CE254857D20006FB8C /* FeedbackManager.swift */; };
 		2B3B70A225445C08002CA4C3 /* CircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3B70A125445C08002CA4C3 /* CircularProgressBar.swift */; };
 		2B3FE19B2546BD0200A7C07E /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B5A9D2A2541E68E00E482A3 /* WidgetKit.framework */; };
 		2B3FE19C2546BD0200A7C07E /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B5A9D2C2541E68E00E482A3 /* SwiftUI.framework */; };
@@ -23,12 +24,15 @@
 		2B5333042540E3A80022BC32 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5333032540E3A80022BC32 /* Constants.swift */; };
 		2B581139254355440060792A /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B581138254355440060792A /* MoreViewController.swift */; };
 		2B58113C2543572B0060792A /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B58113B2543572B0060792A /* FeedbackViewController.swift */; };
+		2B589FAE2547FCEF00870705 /* UnifiedNativeAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B589FAD2547FCEF00870705 /* UnifiedNativeAdView.xib */; };
+		2B589FBF25480AD600870705 /* StatisticCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B589FBE25480AD600870705 /* StatisticCell.xib */; };
+		2B589FC325480E5200870705 /* StatisticCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B589FC225480E5200870705 /* StatisticCell.swift */; };
 		2B58DE582545A228008DAE51 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B58DE562545A228008DAE51 /* DataModel.xcdatamodeld */; };
-		2B6995DA2544DB3100DB98C1 /* UnifiedNativeAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B6995D92544DB3100DB98C1 /* UnifiedNativeAdView.xib */; };
+		2B5918EE2548538F0029AC6C /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5918ED2548538F0029AC6C /* Enums.swift */; };
 		2B6A17332541A7E100B9B4EA /* ControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6A17322541A7E100B9B4EA /* ControllerExtensions.swift */; };
 		2B6D6A6A2540870800025870 /* PlantsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D6A692540870800025870 /* PlantsTableViewController.swift */; };
 		2B6D6A71254087B900025870 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D6A70254087B900025870 /* SettingViewController.swift */; };
-		2B6D6A75254087F300025870 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D6A74254087F300025870 /* UserViewController.swift */; };
+		2B6D6A75254087F300025870 /* StatisticsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D6A74254087F300025870 /* StatisticsCollectionViewController.swift */; };
 		2B6D6A7825408C3300025870 /* AddPlantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D6A7725408C3300025870 /* AddPlantViewController.swift */; };
 		2B6D6A7C25408D4200025870 /* PlantDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D6A7B25408D4200025870 /* PlantDetailsViewController.swift */; };
 		2B7F721C2544188A005C302A /* FeedbackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B7F721B2544188A005C302A /* FeedbackCell.xib */; };
@@ -69,6 +73,7 @@
 
 /* Begin PBXFileReference section */
 		21592E095FC3022B549BA5F6 /* Pods-WaterMi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WaterMi.debug.xcconfig"; path = "Target Support Files/Pods-WaterMi/Pods-WaterMi.debug.xcconfig"; sourceTree = "<group>"; };
+		2B1EF3CE254857D20006FB8C /* FeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackManager.swift; sourceTree = "<group>"; };
 		2B3B70A125445C08002CA4C3 /* CircularProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBar.swift; sourceTree = "<group>"; };
 		2B3FE19A2546BD0200A7C07E /* WaterMiWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WaterMiWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B3FE19E2546BD0200A7C07E /* WaterMiWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterMiWidget.swift; sourceTree = "<group>"; };
@@ -83,14 +88,17 @@
 		2B5333032540E3A80022BC32 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2B581138254355440060792A /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
 		2B58113B2543572B0060792A /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
+		2B589FAD2547FCEF00870705 /* UnifiedNativeAdView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UnifiedNativeAdView.xib; sourceTree = "<group>"; };
+		2B589FBE25480AD600870705 /* StatisticCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatisticCell.xib; sourceTree = "<group>"; };
+		2B589FC225480E5200870705 /* StatisticCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticCell.swift; sourceTree = "<group>"; };
 		2B58DE572545A228008DAE51 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		2B5918ED2548538F0029AC6C /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		2B5A9D2A2541E68E00E482A3 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		2B5A9D2C2541E68E00E482A3 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		2B6995D92544DB3100DB98C1 /* UnifiedNativeAdView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UnifiedNativeAdView.xib; path = ../../../../UnifiedNativeAdView.xib; sourceTree = "<group>"; };
 		2B6A17322541A7E100B9B4EA /* ControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerExtensions.swift; sourceTree = "<group>"; };
 		2B6D6A692540870800025870 /* PlantsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantsTableViewController.swift; sourceTree = "<group>"; };
 		2B6D6A70254087B900025870 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
-		2B6D6A74254087F300025870 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		2B6D6A74254087F300025870 /* StatisticsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsCollectionViewController.swift; sourceTree = "<group>"; };
 		2B6D6A7725408C3300025870 /* AddPlantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlantViewController.swift; sourceTree = "<group>"; };
 		2B6D6A7B25408D4200025870 /* PlantDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantDetailsViewController.swift; sourceTree = "<group>"; };
 		2B7F721B2544188A005C302A /* FeedbackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedbackCell.xib; sourceTree = "<group>"; };
@@ -143,6 +151,9 @@
 			children = (
 				2BAB1944254727DE00785ABF /* PlantDatabaseManager.swift */,
 				2B58DE562545A228008DAE51 /* DataModel.xcdatamodeld */,
+				2B5918ED2548538F0029AC6C /* Enums.swift */,
+				2B5333032540E3A80022BC32 /* Constants.swift */,
+				2B1EF3CE254857D20006FB8C /* FeedbackManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -150,16 +161,11 @@
 		2B215718253F9E4200B815DB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				2B5332FF2540DE140022BC32 /* PlantCell.swift */,
-				2B5332FC2540DAAC0022BC32 /* PlantCell.xib */,
-				2B7F721E2544190D005C302A /* FeedbackCell.swift */,
-				2B7F721B2544188A005C302A /* FeedbackCell.xib */,
-				2B3FE1B82546F1E900A7C07E /* AdCell.swift */,
-				2B3FE1B42546F1CB00A7C07E /* AdCell.xib */,
-				2BC00705253F96690094C606 /* LaunchScreen.storyboard */,
-				2BC00700253F96680094C606 /* Main.storyboard */,
+				2B589FBD25480A5E00870705 /* CollectionViewCell */,
+				2B589FB7254806CE00870705 /* TableViewCells */,
+				2B589FBA2548078F00870705 /* StoryBoards */,
 				2B3B70A125445C08002CA4C3 /* CircularProgressBar.swift */,
-				2B6995D92544DB3100DB98C1 /* UnifiedNativeAdView.xib */,
+				2B589FAD2547FCEF00870705 /* UnifiedNativeAdView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -169,7 +175,7 @@
 			children = (
 				2B6D6A692540870800025870 /* PlantsTableViewController.swift */,
 				2B6D6A70254087B900025870 /* SettingViewController.swift */,
-				2B6D6A74254087F300025870 /* UserViewController.swift */,
+				2B6D6A74254087F300025870 /* StatisticsCollectionViewController.swift */,
 				2B6D6A7725408C3300025870 /* AddPlantViewController.swift */,
 				2B6D6A7B25408D4200025870 /* PlantDetailsViewController.swift */,
 				2B581138254355440060792A /* MoreViewController.swift */,
@@ -195,6 +201,37 @@
 				2B6A17322541A7E100B9B4EA /* ControllerExtensions.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		2B589FB7254806CE00870705 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				2B5332FF2540DE140022BC32 /* PlantCell.swift */,
+				2B5332FC2540DAAC0022BC32 /* PlantCell.xib */,
+				2B7F721E2544190D005C302A /* FeedbackCell.swift */,
+				2B7F721B2544188A005C302A /* FeedbackCell.xib */,
+				2B3FE1B82546F1E900A7C07E /* AdCell.swift */,
+				2B3FE1B42546F1CB00A7C07E /* AdCell.xib */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		2B589FBA2548078F00870705 /* StoryBoards */ = {
+			isa = PBXGroup;
+			children = (
+				2BC00705253F96690094C606 /* LaunchScreen.storyboard */,
+				2BC00700253F96680094C606 /* Main.storyboard */,
+			);
+			path = StoryBoards;
+			sourceTree = "<group>";
+		};
+		2B589FBD25480A5E00870705 /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				2B589FBE25480AD600870705 /* StatisticCell.xib */,
+				2B589FC225480E5200870705 /* StatisticCell.swift */,
+			);
+			path = CollectionViewCell;
 			sourceTree = "<group>";
 		};
 		2BC006EE253F96680094C606 = {
@@ -223,7 +260,6 @@
 			children = (
 				2BC006FA253F96680094C606 /* AppDelegate.swift */,
 				2BC006FC253F96680094C606 /* SceneDelegate.swift */,
-				2B5333032540E3A80022BC32 /* Constants.swift */,
 				2B215719253F9E5300B815DB /* Controller */,
 				2B215718253F9E4200B815DB /* View */,
 				2B215717253F9E3600B815DB /* Model */,
@@ -337,8 +373,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BC00707253F96690094C606 /* LaunchScreen.storyboard in Resources */,
-				2B6995DA2544DB3100DB98C1 /* UnifiedNativeAdView.xib in Resources */,
 				2B7F721C2544188A005C302A /* FeedbackCell.xib in Resources */,
+				2B589FBF25480AD600870705 /* StatisticCell.xib in Resources */,
+				2B589FAE2547FCEF00870705 /* UnifiedNativeAdView.xib in Resources */,
 				2B5332FD2540DAAC0022BC32 /* PlantCell.xib in Resources */,
 				2BC00704253F96690094C606 /* Assets.xcassets in Resources */,
 				2B3FE1B52546F1CB00A7C07E /* AdCell.xib in Resources */,
@@ -425,10 +462,13 @@
 			files = (
 				2B7F721F2544190D005C302A /* FeedbackCell.swift in Sources */,
 				2B6A17332541A7E100B9B4EA /* ControllerExtensions.swift in Sources */,
+				2B5918EE2548538F0029AC6C /* Enums.swift in Sources */,
 				2B6D6A7825408C3300025870 /* AddPlantViewController.swift in Sources */,
 				2BAB1945254727DE00785ABF /* PlantDatabaseManager.swift in Sources */,
+				2B1EF3CF254857D20006FB8C /* FeedbackManager.swift in Sources */,
+				2B589FC325480E5200870705 /* StatisticCell.swift in Sources */,
 				2B6D6A71254087B900025870 /* SettingViewController.swift in Sources */,
-				2B6D6A75254087F300025870 /* UserViewController.swift in Sources */,
+				2B6D6A75254087F300025870 /* StatisticsCollectionViewController.swift in Sources */,
 				2BC006FB253F96680094C606 /* AppDelegate.swift in Sources */,
 				2BC006FD253F96680094C606 /* SceneDelegate.swift in Sources */,
 				2B5333042540E3A80022BC32 /* Constants.swift in Sources */,

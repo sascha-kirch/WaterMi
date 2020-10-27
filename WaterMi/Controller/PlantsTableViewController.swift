@@ -10,7 +10,7 @@ import SwipeCellKit
 import UserNotifications
 
 
-class PlantsTableViewController: UITableViewController, UIViewControllerPreviewingDelegate, UNUserNotificationCenterDelegate {
+final class PlantsTableViewController: UITableViewController, UIViewControllerPreviewingDelegate, UNUserNotificationCenterDelegate {
 
     @IBOutlet var plantsTableView: UITableView!
     var Plants: [Plant] = []
@@ -171,13 +171,11 @@ extension PlantsTableViewController: SwipeTableViewCellDelegate {
                 self.plantDatabaseManger.deletePlant(plant: self.Plants[indexPath.row])
                 self.Plants.remove(at: indexPath.row) //IMPORTANT: first the context, then the array! If not ndex out of range
                 self.plantDatabaseManger.savePlants()
-                
             }
         }
         // customize the action appearance
         deleteAction.image = UIImage(named: "trash")
         deleteAction.backgroundColor = UIColor.red
-        
         
         let editAction = SwipeAction(style: .default, title: "Edit") { action, indexPath in
             // handle action by updating model with deletion
@@ -201,3 +199,44 @@ extension PlantsTableViewController: SwipeTableViewCellDelegate {
     }
 }
 
+
+//MARK: - Preview
+#if canImport(SwiftUI) && DEBUG
+import SwiftUI
+
+extension PlantsTableViewController: UIViewControllerRepresentable {
+    
+  func makeUIViewController(context: Context) -> PlantsTableViewController {
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+      guard let viewController =  storyboard.instantiateViewController(
+                identifier: WMConstant.StoryBoardID.PlantsTableViewController) as? PlantsTableViewController else {
+          fatalError("Cannot load from storyboard")
+      }
+      // Configure the view controller here
+      return viewController
+  }
+
+  func updateUIViewController(_ uiViewController: PlantsTableViewController,
+    context: Context) {
+  }
+}
+
+struct PlantsTableViewControllerPreviews: PreviewProvider {
+  static var previews: some View {
+    PlantsTableViewController()
+        .environment(\.colorScheme, .light)
+        .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
+        .previewDisplayName("iPhone 11")
+    
+    PlantsTableViewController()
+        .environment(\.colorScheme, .light)
+        .previewDevice(PreviewDevice(rawValue: "iPad Pro (11-inch) (2nd generation)"))
+        .previewDisplayName("iPad Pro (11-inch) (2nd generation)")
+    
+    PlantsTableViewController()
+        .environment(\.colorScheme, .dark)
+        .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
+        .previewDisplayName("iPhone SE")
+  }
+}
+#endif

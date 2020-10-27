@@ -8,7 +8,6 @@
 import UIKit
 import SwipeCellKit
 
-@IBDesignable
 class PlantCell : SwipeTableViewCell {
     
     @IBOutlet weak var plantImageView: UIImageView!
@@ -23,8 +22,6 @@ class PlantCell : SwipeTableViewCell {
     }
     
     fileprivate func setupLayers() {
-        stackView.layer.cornerRadius = card.frame.size.height / 5 //rounden the card shape
-        
         timeLeftLabel.text = "23h"
         
         plantImageView.contentMode = UIView.ContentMode.scaleAspectFit
@@ -33,6 +30,7 @@ class PlantCell : SwipeTableViewCell {
         plantImageView.layer.borderWidth = 1
         plantImageView.layer.borderColor = UIColor.black.cgColor
         
+        stackView.layer.cornerRadius = card.frame.size.height / 5 //rounden the card shape
         //Shoddow bellow Card
         stackView.layer.shadowOpacity = 0.75
         stackView.layer.shadowOffset = CGSize(width: 0, height: 2)
