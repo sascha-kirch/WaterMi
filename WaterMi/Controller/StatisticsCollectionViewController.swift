@@ -12,8 +12,6 @@ final class StatisticsCollectionViewController: UICollectionViewController {
     @IBOutlet var statisticCollectionView: UICollectionView!
     var statistic:[StatisticFormat] = []
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,10 +25,11 @@ final class StatisticsCollectionViewController: UICollectionViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         statistic = DatabaseManager.getStatistics(statisticTypes: [.timesWatered, .numberOfPlants])
+        //statistic.append(contentsOf: DatabaseManager.getStatistics(for: testPlant, statisticTypes: [.timesWatered]))
         collectionView.reloadData()
     }
-    
     
     fileprivate func configure() {
         let screenRect = UIScreen.main.bounds

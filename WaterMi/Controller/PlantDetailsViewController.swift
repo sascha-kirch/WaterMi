@@ -17,6 +17,7 @@ final class PlantDetailsViewController: UIViewController {
     @IBOutlet weak var nextTimerWateringLabel: UILabel!
     @IBOutlet weak var lastTimerWateringLabel: UILabel!
     @IBOutlet weak var intervallLabel: UILabel!
+    @IBOutlet weak var timesWateredLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +40,8 @@ final class PlantDetailsViewController: UIViewController {
             self.lastTimerWateringLabel.text = "Not watered yet"
         }
         self.intervallLabel.text = String(plant?.wateringIntervall ?? 7)
+        
+        self.timesWateredLabel.text = String(DatabaseManager.getStatistics(for: plant!, statisticTypes: [.timesWatered])[0].value)
         
         // crate round image View!!
         plantImageView.layer.borderWidth = 1

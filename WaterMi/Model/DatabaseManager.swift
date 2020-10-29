@@ -38,7 +38,7 @@ class DatabaseManager {
     //MARK: - Plant Methods
     
     /**Adds a new plant to the context*/
-    static func addNewPlantToContext(plantName:String, plantImage:UIImage, waterIntervall:Int16, waterTime:Date) -> Plant {
+    static func addNewPlantToContext(plantName:String, plantImage:UIImage, waterIntervall:Int16, waterTime:Date, saveContextToContainer:Bool = true) -> Plant {
         let newPlant = Plant(context: persistentContainer.viewContext)
         newPlant.plantName = plantName
         newPlant.plantImage = plantImage.pngData()
@@ -48,7 +48,10 @@ class DatabaseManager {
         newPlant.nextTimeWatering = getNextWateringTime(waterIntervall: waterIntervall, waterTime: waterTime)
         newPlant.lastTimeWatering = nil
         
-        saveContextToPersistentContainer()
+        //saving is optional in order to be more efficient when modifying more objects at once
+        if saveContextToContainer {
+            saveContextToPersistentContainer()
+        }
         return newPlant
     }
     
@@ -63,9 +66,17 @@ class DatabaseManager {
     }
     
     /**deletes plant provided from context.*/
-    static func deletePlantFromContext(plant:Plant) {
+    static func deletePlantFromContext(plant:Plant, saveContextToContainer:Bool = true) {
+        //deleteStatisticsOfPlantFromContext(plant: plant)
+        
+        //Deletes all children since configured deletion is "cascade"
         persistentContainer.viewContext.delete(plant)
-        saveContextToPersistentContainer()
+        
+        
+        //saving is optional in order to be more efficient when modifying more objects at once
+        if saveContextToContainer {
+            saveContextToPersistentContainer()
+        }
     }
     
     /**Updates the plant provided in the context*/
@@ -73,12 +84,16 @@ class DatabaseManager {
         //TODO: Implement!
     }
     
-    static func wateredPlant(plant:Plant){
+    static func wateredPlant(plant:Plant, saveContextToContainer:Bool = true){
         //first the statistic, then the update of the plant!
         addNewWateringStatistic(plant: plant)
         plant.lastTimeWatering = Date()
         plant.nextTimeWatering = getNextWateringTime(waterIntervall: plant.wateringIntervall, waterTime: plant.wateringTime!)
-        saveContextToPersistentContainer()
+        
+        //saving is optional in order to be more efficient when modifying more objects at once
+        if saveContextToContainer {
+            saveContextToPersistentContainer()
+        }
     }
     
     static func getNextWateringTime(waterIntervall:Int16, waterTime:Date) -> Date {
@@ -89,20 +104,65 @@ class DatabaseManager {
         return nextIntervallDate!
     }
     
+    static func getDebugPlant() -> Plant{
+        let plant = Plant()
+        plant.plantName = "olivio"
+        plant.plantImage = UIImage(named: "olivio")?.pngData()
+        plant.timerIsActive = true
+        plant.lastTimeWatering = Date()
+        plant.nextTimeWatering = Date()
+        plant.wateringTime = Date()
+        plant.wateringIntervall = 5
+        
+        return plant
+    }
+    
     //MARK: - Statistic Methods
     
     /**adds a new watering process to the context!*/
-    static func addNewWateringStatistic(plant:Plant){
-        let newWateringStatistic = Statistic(context: persistentContainer.viewContext)
+    static func addNewWateringStatistic(plant:Plant, saveContextToContainer:Bool = true){
+        let newWateringStatistic = WateringStatistic(context: persistentContainer.viewContext)
         newWateringStatistic.parentPlant = plant
         newWateringStatistic.actualDate = Date()
         newWateringStatistic.dueDate = plant.nextTimeWatering
         
-        saveContextToPersistentContainer()
+        //saving is optional in order to be more efficient when modifying more objects at once
+        if saveContextToContainer {
+            saveContextToPersistentContainer()
+        }
     }
     
+    /**deletes statistic provided from context.*/
+    static func deleteStatisticFromContext(statistic:WateringStatistic, saveContextToContainer:Bool = true) {
+        persistentContainer.viewContext.delete(statistic)
+        
+        if saveContextToContainer {
+            saveContextToPersistentContainer()
+        }
+    }
+    
+    /**deletes statistic provided from context.*/
+   //static func deleteStatisticsOfPlantFromContext(plant:Plant, saveContextToContainer:Bool = false) {
+   //    //persistentContainer.viewContext.delete(statistic)
+   //
+   //    let plantPredicate = NSPredicate(format: "parentPlant.plantName MATCHES %@", plant.plantName!)
+   //    let fetchRequests = NSFetchRequest<NSFetchRequestResult>(entityName: "WateringStatistic")
+   //    fetchRequests.predicate = plantPredicate
+   //    let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequests)
+   //
+   //    do {
+   //        try persistentContainer.viewContext.execute(deleteRequest)
+   //    } catch {
+   //        print("Error loading category array \(error)")
+   //    }
+
+   //    if saveContextToContainer {
+   //        saveContextToPersistentContainer()
+   //    }
+   //}
+    
     /**loads the plants stored in the container and returns the context*/
-    static func loadStatisticsFromPersistentContainer(with request: NSFetchRequest<Statistic> = Statistic.fetchRequest()) -> [Statistic] {
+    static func loadStatisticsFromPersistentContainer(with request: NSFetchRequest<WateringStatistic> = WateringStatistic.fetchRequest()) -> [WateringStatistic] {
         do {
             return try persistentContainer.viewContext.fetch(request)
         } catch {
@@ -111,6 +171,23 @@ class DatabaseManager {
         return []
     }
     
+    /**loads the plants stored in the container and returns the context*/
+    static func loadStatisticsFromPersistentContainer(for plant:Plant, with request: NSFetchRequest<WateringStatistic> = WateringStatistic.fetchRequest()) -> [WateringStatistic] {
+        
+        let plantPredicate = NSPredicate(format: "parentPlant.plantName MATCHES %@", plant.plantName!)
+
+        request.predicate = plantPredicate
+
+        do {
+            let fetchedResult = try persistentContainer.viewContext.fetch(request)
+            return fetchedResult
+        } catch {
+            print("Error loading category array \(error)")
+        }
+        return []
+    }
+    
+    /**Returns statistics independently from its parent plant*/
     static func getStatistics(statisticTypes:[EwateringStatistic]) -> [StatisticFormat] {
         var statistic : [StatisticFormat] = []
         for type in statisticTypes {
@@ -124,6 +201,20 @@ class DatabaseManager {
         return statistic
     }
     
+    /**Returns statistics for a given plant*/
+    static func getStatistics(for plant:Plant, statisticTypes:[EwateringStatistic]) -> [StatisticFormat] {
+        var statistic : [StatisticFormat] = []
+        for type in statisticTypes {
+            switch type {
+            case .timesWatered:
+                statistic.append(StatisticFormat(name: "\(plant.plantName!): Times Watered", value: Double(loadStatisticsFromPersistentContainer(for: plant).count)))
+
+            case .numberOfPlants:
+                print("Nothing")
+            }
+        }
+        return statistic
+    }
 }
 
 struct StatisticFormat {

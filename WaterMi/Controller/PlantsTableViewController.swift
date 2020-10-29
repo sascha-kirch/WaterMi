@@ -18,6 +18,8 @@ final class PlantsTableViewController: UITableViewController, UIViewControllerPr
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+        
         //Register3D Touch Preview
         if( traitCollection.forceTouchCapability == .available){
             registerForPreviewing(with: self, sourceView: plantsTableView)

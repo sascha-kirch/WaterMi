@@ -8,12 +8,12 @@
         <attribute name="timerIsActive" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="wateringIntervall" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="wateringTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="wateringStatistics" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WateringStatistic" inverseName="parentPlant" inverseEntity="WateringStatistic"/>
+        <relationship name="wateringStatistics" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="WateringStatistic" inverseName="parentPlant" inverseEntity="WateringStatistic"/>
     </entity>
-    <entity name="WateringStatistic" representedClassName=".Statistic" syncable="YES" codeGenerationType="class">
+    <entity name="WateringStatistic" representedClassName=".WateringStatistic" syncable="YES" codeGenerationType="class">
         <attribute name="actualDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="dueDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="parentPlant" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Plant" inverseName="wateringStatistics" inverseEntity="Plant"/>
+        <relationship name="parentPlant" maxCount="1" deletionRule="Nullify" destinationEntity="Plant" inverseName="wateringStatistics" inverseEntity="Plant"/>
     </entity>
     <elements>
         <element name="Plant" positionX="-63" positionY="-18" width="128" height="149"/>
