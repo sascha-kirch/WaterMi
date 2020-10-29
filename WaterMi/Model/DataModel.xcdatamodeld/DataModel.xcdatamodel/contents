@@ -2,12 +2,12 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="20A5395g" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Plant" representedClassName=".Plant" syncable="YES" codeGenerationType="class">
         <attribute name="lastTimeWatering" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="nextTimeWatering" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="nextTimeWatering" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="plantImage" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
         <attribute name="plantName" attributeType="String"/>
-        <attribute name="timerIsActive" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="wateringIntervall" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="wateringTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="timerActive" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="wateringIntervall" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="wateringTime" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="wateringStatistics" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="WateringStatistic" inverseName="parentPlant" inverseEntity="WateringStatistic"/>
     </entity>
     <entity name="WateringStatistic" representedClassName=".WateringStatistic" syncable="YES" codeGenerationType="class">

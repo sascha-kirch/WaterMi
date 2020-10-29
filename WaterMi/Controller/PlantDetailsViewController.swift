@@ -18,6 +18,7 @@ final class PlantDetailsViewController: UIViewController {
     @IBOutlet weak var lastTimerWateringLabel: UILabel!
     @IBOutlet weak var intervallLabel: UILabel!
     @IBOutlet weak var timesWateredLabel: UILabel!
+    @IBOutlet weak var timerActiveLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,8 @@ final class PlantDetailsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.plantNameLabel.text = plant?.plantName
         self.plantImageView.image = UIImage(data:(plant?.plantImage!)!)
-        self.plantTimerActiveStatus.isOn = ((plant?.timerIsActive) != nil)
+        self.plantTimerActiveStatus.setOn(plant!.timerActive, animated: true)
+        self.timerActiveLabel.text = plant!.timerActive.description
         
         let formater = DateFormatter()
         formater.dateStyle = .full
@@ -51,6 +53,10 @@ final class PlantDetailsViewController: UIViewController {
         plantImageView.clipsToBounds = true
     }
 
+    @IBAction func timerActivationSwitch(_ sender: UISwitch) {
+        DatabaseManager.setPlantActivationState(plant: plant!, newState: sender.isOn)
+    }
+    
     //MARK: - Preview Functionality
     
     /**Shows action items that can be performed when the preview is entered!*/
@@ -82,9 +88,7 @@ extension PlantDetailsViewController: UIViewControllerRepresentable {
                 identifier: WMConstant.StoryBoardID.PlantDetailsViewController) as? PlantDetailsViewController else {
           fatalError("Cannot load from storyboard")
       }
-    var plant:Plant = Plant()
-    plant.plantName = "Testplant"
-    plant.plantImage = UIImage(named: "olivio")?.pngData()
+    var plant:Plant = DatabaseManager.getDebugPlant()
     viewController.plant = plant
       // Configure the view controller here
       return viewController

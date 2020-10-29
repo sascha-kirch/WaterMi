@@ -171,13 +171,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="CVY-gO-8Sw">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="315.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Xhx-HT-cl1">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="121"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="52.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="leaf.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Dsa-AV-6vO">
-                                                <rect key="frame" x="182" y="1.5" width="50" height="55"/>
+                                                <rect key="frame" x="197" y="1.5" width="20.5" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="1sO-wJ-JrX"/>
                                                     <constraint firstAttribute="width" secondItem="Dsa-AV-6vO" secondAttribute="height" multiplier="25:29" id="kyS-hX-Nmo"/>
@@ -186,7 +186,7 @@
                                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="thin"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Plantname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="umK-Jq-ccM">
-                                                <rect key="frame" x="167" y="63" width="80.5" height="58"/>
+                                                <rect key="frame" x="167" y="29" width="80.5" height="23.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -198,30 +198,39 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="sct-mb-zAH">
-                                        <rect key="frame" x="0.0" y="121" width="414" height="120.5"/>
+                                        <rect key="frame" x="0.0" y="52.5" width="414" height="52.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timer activated" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sVw-GW-Z1Y">
-                                                <rect key="frame" x="0.0" y="50" width="207" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="16" width="138" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cEn-bS-87h">
-                                                <rect key="frame" x="207" y="45" width="209" height="31"/>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="cEn-bS-87h">
+                                                <rect key="frame" x="138" y="11" width="140" height="31"/>
+                                                <connections>
+                                                    <action selector="timerActivationSwitch:" destination="dpH-SF-ct5" eventType="valueChanged" id="jsU-GC-DEK"/>
+                                                </connections>
                                             </switch>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ju-9y-Bzg">
+                                                <rect key="frame" x="276" y="16" width="138" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="XfJ-YY-Ndk">
-                                        <rect key="frame" x="0.0" y="241.5" width="414" height="121"/>
+                                        <rect key="frame" x="0.0" y="105" width="414" height="52.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next Time Watering" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ikS-70-SQ9">
-                                                <rect key="frame" x="0.0" y="50.5" width="207" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="16" width="207" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M2t-hT-FDj">
-                                                <rect key="frame" x="207" y="50.5" width="207" height="20.5"/>
+                                                <rect key="frame" x="207" y="16" width="207" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -229,16 +238,16 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="PLZ-jk-a3j">
-                                        <rect key="frame" x="0.0" y="362.5" width="414" height="121"/>
+                                        <rect key="frame" x="0.0" y="157.5" width="414" height="52.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Time Watering" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tYU-aM-i9Z">
-                                                <rect key="frame" x="0.0" y="50" width="207" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="16" width="207" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tN9-sa-2Az">
-                                                <rect key="frame" x="207" y="50" width="207" height="20.5"/>
+                                                <rect key="frame" x="207" y="16" width="207" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -246,16 +255,16 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vPR-N0-veW">
-                                        <rect key="frame" x="0.0" y="483.5" width="414" height="120.5"/>
+                                        <rect key="frame" x="0.0" y="210" width="414" height="53"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Intervall" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NhR-59-re4">
-                                                <rect key="frame" x="0.0" y="50" width="203" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="16.5" width="203" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cgk-YC-bsy">
-                                                <rect key="frame" x="211" y="50" width="203" height="20.5"/>
+                                                <rect key="frame" x="211" y="16.5" width="203" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -263,16 +272,16 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="bM8-SZ-LTR">
-                                        <rect key="frame" x="0.0" y="604" width="414" height="121"/>
+                                        <rect key="frame" x="0.0" y="263" width="414" height="52.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Times Watered" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nel-l7-nMi">
-                                                <rect key="frame" x="0.0" y="50.5" width="207" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="16" width="207" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fsT-HR-ESJ">
-                                                <rect key="frame" x="207" y="50.5" width="207" height="20.5"/>
+                                                <rect key="frame" x="207" y="16" width="207" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -325,6 +334,7 @@
                         <outlet property="plantImageView" destination="Dsa-AV-6vO" id="3Jn-fO-sgl"/>
                         <outlet property="plantNameLabel" destination="umK-Jq-ccM" id="Qdg-KI-0uu"/>
                         <outlet property="plantTimerActiveStatus" destination="cEn-bS-87h" id="ufX-9V-J8h"/>
+                        <outlet property="timerActiveLabel" destination="9Ju-9y-Bzg" id="lwC-ZW-7Er"/>
                         <outlet property="timesWateredLabel" destination="fsT-HR-ESJ" id="jFt-WW-yZk"/>
                     </connections>
                 </viewController>

@@ -42,7 +42,7 @@ class DatabaseManager {
         let newPlant = Plant(context: persistentContainer.viewContext)
         newPlant.plantName = plantName
         newPlant.plantImage = plantImage.pngData()
-        newPlant.timerIsActive = true
+        newPlant.timerActive = true
         newPlant.wateringIntervall = waterIntervall
         newPlant.wateringTime = waterTime
         newPlant.nextTimeWatering = getNextWateringTime(waterIntervall: waterIntervall, waterTime: waterTime)
@@ -80,8 +80,14 @@ class DatabaseManager {
     }
     
     /**Updates the plant provided in the context*/
-    static func updatePlantInContext(plant:Plant) {
-        //TODO: Implement!
+    static func setPlantActivationState(plant:Plant, newState:Bool, saveContextToContainer:Bool = true) {
+        
+        plant.timerActive = newState
+        
+        //saving is optional in order to be more efficient when modifying more objects at once
+        if saveContextToContainer {
+            saveContextToPersistentContainer()
+        }
     }
     
     static func wateredPlant(plant:Plant, saveContextToContainer:Bool = true){
@@ -108,7 +114,7 @@ class DatabaseManager {
         let plant = Plant()
         plant.plantName = "olivio"
         plant.plantImage = UIImage(named: "olivio")?.pngData()
-        plant.timerIsActive = true
+        plant.timerActive = true
         plant.lastTimeWatering = Date()
         plant.nextTimeWatering = Date()
         plant.wateringTime = Date()
