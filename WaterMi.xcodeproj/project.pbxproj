@@ -37,8 +37,9 @@
 		2B6D6A7C25408D4200025870 /* PlantDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D6A7B25408D4200025870 /* PlantDetailsViewController.swift */; };
 		2B7F721C2544188A005C302A /* FeedbackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B7F721B2544188A005C302A /* FeedbackCell.xib */; };
 		2B7F721F2544190D005C302A /* FeedbackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7F721E2544190D005C302A /* FeedbackCell.swift */; };
-		2BAB1945254727DE00785ABF /* PlantDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAB1944254727DE00785ABF /* PlantDatabaseManager.swift */; };
-		2BAB195B25473A3E00785ABF /* PlantDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAB1944254727DE00785ABF /* PlantDatabaseManager.swift */; };
+		2B8AADEA254A373600323A99 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5918ED2548538F0029AC6C /* Enums.swift */; };
+		2BAB1945254727DE00785ABF /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAB1944254727DE00785ABF /* DatabaseManager.swift */; };
+		2BAB195B25473A3E00785ABF /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAB1944254727DE00785ABF /* DatabaseManager.swift */; };
 		2BC006FB253F96680094C606 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC006FA253F96680094C606 /* AppDelegate.swift */; };
 		2BC006FD253F96680094C606 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC006FC253F96680094C606 /* SceneDelegate.swift */; };
 		2BC00702253F96680094C606 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BC00700253F96680094C606 /* Main.storyboard */; };
@@ -103,7 +104,7 @@
 		2B6D6A7B25408D4200025870 /* PlantDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantDetailsViewController.swift; sourceTree = "<group>"; };
 		2B7F721B2544188A005C302A /* FeedbackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedbackCell.xib; sourceTree = "<group>"; };
 		2B7F721E2544190D005C302A /* FeedbackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackCell.swift; sourceTree = "<group>"; };
-		2BAB1944254727DE00785ABF /* PlantDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantDatabaseManager.swift; sourceTree = "<group>"; };
+		2BAB1944254727DE00785ABF /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		2BAB196225473CBE00785ABF /* WaterMiWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WaterMiWidgetExtension.entitlements; sourceTree = "<group>"; };
 		2BC006F7253F96680094C606 /* WaterMi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaterMi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BC006FA253F96680094C606 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -149,7 +150,7 @@
 		2B215717253F9E3600B815DB /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				2BAB1944254727DE00785ABF /* PlantDatabaseManager.swift */,
+				2BAB1944254727DE00785ABF /* DatabaseManager.swift */,
 				2B58DE562545A228008DAE51 /* DataModel.xcdatamodeld */,
 				2B5918ED2548538F0029AC6C /* Enums.swift */,
 				2B5333032540E3A80022BC32 /* Constants.swift */,
@@ -449,9 +450,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2BAB195B25473A3E00785ABF /* PlantDatabaseManager.swift in Sources */,
+				2BAB195B25473A3E00785ABF /* DatabaseManager.swift in Sources */,
 				2B3FE1B02546BFCA00A7C07E /* WidgetContent.swift in Sources */,
 				2B3FE19F2546BD0200A7C07E /* WaterMiWidget.swift in Sources */,
+				2B8AADEA254A373600323A99 /* Enums.swift in Sources */,
 				2B3FE1AB2546BE8F00A7C07E /* DataModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -464,7 +466,7 @@
 				2B6A17332541A7E100B9B4EA /* ControllerExtensions.swift in Sources */,
 				2B5918EE2548538F0029AC6C /* Enums.swift in Sources */,
 				2B6D6A7825408C3300025870 /* AddPlantViewController.swift in Sources */,
-				2BAB1945254727DE00785ABF /* PlantDatabaseManager.swift in Sources */,
+				2BAB1945254727DE00785ABF /* DatabaseManager.swift in Sources */,
 				2B1EF3CF254857D20006FB8C /* FeedbackManager.swift in Sources */,
 				2B589FC325480E5200870705 /* StatisticCell.swift in Sources */,
 				2B6D6A71254087B900025870 /* SettingViewController.swift in Sources */,

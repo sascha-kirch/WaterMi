@@ -9,11 +9,14 @@ import UIKit
 
 final class PlantDetailsViewController: UIViewController {
 
-    var selectedPlant: String?
-    var selectedPlantImage: UIImage?
+    var plant: Plant?
     
     @IBOutlet weak var plantNameLabel: UILabel!
     @IBOutlet weak var plantImageView: UIImageView!
+    @IBOutlet weak var plantTimerActiveStatus: UISwitch!
+    @IBOutlet weak var nextTimerWateringLabel: UILabel!
+    @IBOutlet weak var lastTimerWateringLabel: UILabel!
+    @IBOutlet weak var intervallLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,8 +25,20 @@ final class PlantDetailsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.plantNameLabel.text = selectedPlant
-        self.plantImageView.image = selectedPlantImage
+        self.plantNameLabel.text = plant?.plantName
+        self.plantImageView.image = UIImage(data:(plant?.plantImage!)!)
+        self.plantTimerActiveStatus.isOn = ((plant?.timerIsActive) != nil)
+        
+        let formater = DateFormatter()
+        formater.dateStyle = .full
+        self.nextTimerWateringLabel.text = formater.string(from: (plant?.nextTimeWatering)!)
+        
+        if let lastTimeWatered = plant?.lastTimeWatering {
+        self.lastTimerWateringLabel.text = formater.string(from: lastTimeWatered)
+        } else {
+            self.lastTimerWateringLabel.text = "Not watered yet"
+        }
+        self.intervallLabel.text = String(plant?.wateringIntervall ?? 7)
         
         // crate round image View!!
         plantImageView.layer.borderWidth = 1
@@ -64,8 +79,10 @@ extension PlantDetailsViewController: UIViewControllerRepresentable {
                 identifier: WMConstant.StoryBoardID.PlantDetailsViewController) as? PlantDetailsViewController else {
           fatalError("Cannot load from storyboard")
       }
-    viewController.selectedPlant = "TestPlant"
-    viewController.selectedPlantImage = UIImage(named: "olivio")
+    var plant:Plant = Plant()
+    plant.plantName = "Testplant"
+    plant.plantImage = UIImage(named: "olivio")?.pngData()
+    viewController.plant = plant
       // Configure the view controller here
       return viewController
   }

@@ -10,8 +10,6 @@ import SwiftUI
 
 struct Provider: TimelineProvider {
     
-    let plantDatabaseManager = PlantDatabaseManager()
-    
     /**View that is presented while the Widget is loading!*/
     func placeholder(in context: Context) -> PlantEntry {
         return PlantEntry(date: Date(), plantName: "Olivio", plantImage: UIImage(named: "WaterMi_Image")!)
@@ -25,7 +23,7 @@ struct Provider: TimelineProvider {
     /**Time line when the widget is presented and updated. */
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         var entries: [PlantEntry] = []
-        let plants = plantDatabaseManager.loadPlants()
+        let plants = DatabaseManager.loadPlantsFromPersistentContainer()
         
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let currentDate = Date()

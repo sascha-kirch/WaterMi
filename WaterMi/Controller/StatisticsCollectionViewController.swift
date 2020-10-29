@@ -10,6 +10,27 @@ import UIKit
 final class StatisticsCollectionViewController: UICollectionViewController {
 
     @IBOutlet var statisticCollectionView: UICollectionView!
+    var statistic:[StatisticFormat] = []
+    
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        statisticCollectionView.dataSource = self
+        statisticCollectionView.delegate = self
+
+        //register custom cell design!
+        collectionView.register(UINib.init(nibName: WMConstant.CustomCell.statisticCellNibName, bundle: nil), forCellWithReuseIdentifier: WMConstant.CustomCell.statisticCellIdentifier)
+        
+        configure()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        statistic = DatabaseManager.getStatistics(statisticTypes: [.timesWatered, .numberOfPlants])
+        collectionView.reloadData()
+    }
+    
     
     fileprivate func configure() {
         let screenRect = UIScreen.main.bounds
@@ -22,34 +43,19 @@ final class StatisticsCollectionViewController: UICollectionViewController {
         collectionView!.collectionViewLayout = layout
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        statisticCollectionView.dataSource = self
-        statisticCollectionView.delegate = self
-        
-        //register custom cell design!
-        collectionView.register(UINib.init(nibName: WMConstant.CustomCell.statisticCellNibName, bundle: nil), forCellWithReuseIdentifier: WMConstant.CustomCell.statisticCellIdentifier)
-        
-        configure()
-    }
-    
     //MARK: - Collectionview Data Source
-    //override func numberOfSections(in collectionView: UICollectionView) -> Int {
-    //    return 1
-    //}
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WMConstant.CustomCell.statisticCellIdentifier, for: indexPath) as! StatisticCell
         cell.statisticImageView.image = UIImage(systemName: "leaf")
-        cell.statisticDescription.text = "Number of Plants"
-        cell.statisticContent.text = "5"
+        cell.statisticDescription.text = statistic[indexPath.row].name
+        cell.statisticContent.text = String(statistic[indexPath.row].value)
         
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return statistic.count
     }
     
 

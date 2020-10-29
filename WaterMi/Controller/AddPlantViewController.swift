@@ -14,9 +14,7 @@ final class AddPlantViewController: UIViewController , UITextFieldDelegate, UIIm
     var selectedPlantImage: UIImage?
     var callingViewController : PlantsTableViewController?
     var imagePickerController : UIImagePickerController = UIImagePickerController()
-    let intervallData = ["Dayly","Weekly","Monthly"]
-    
-    let plantDatabaseManger = PlantDatabaseManager()
+    let intervallData = Array(1...31)
     
     @IBOutlet weak var plantImageView: UIImageView!
     @IBOutlet weak var plantNameTextField: UITextField!
@@ -57,7 +55,11 @@ final class AddPlantViewController: UIViewController , UITextFieldDelegate, UIIm
     @IBAction func addButtonPressed(_ sender: UIButton) {
         if let viewController = callingViewController {
             
-            let newPlant = plantDatabaseManger.addNewPlantToContext(plantName: plantNameTextField.text, plantImage: plantImageView.image)
+            let newPlant = DatabaseManager.addNewPlantToContext(
+                plantName: plantNameTextField.text!,
+                plantImage: plantImageView.image!,
+                waterIntervall: Int16(intervallPickerView.selectedRow(inComponent: 0)),
+                waterTime: datePicker.date)
             viewController.Plants.append(newPlant)
             callingViewController?.tableView.reloadData()
         }
@@ -119,19 +121,11 @@ final class AddPlantViewController: UIViewController , UITextFieldDelegate, UIIm
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        switch(pickerView){
-        case intervallPickerView:
             return intervallData.count
-        default: return 0
-        }
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        switch(pickerView){
-        case intervallPickerView:
-            return intervallData[row]
-        default: return nil
-        }
+            return String(intervallData[row])
     }
 }
 

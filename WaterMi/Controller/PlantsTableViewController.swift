@@ -15,8 +15,6 @@ final class PlantsTableViewController: UITableViewController, UIViewControllerPr
     @IBOutlet var plantsTableView: UITableView!
     var Plants: [Plant] = []
     
-    let plantDatabaseManger = PlantDatabaseManager()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,7 +33,7 @@ final class PlantsTableViewController: UITableViewController, UIViewControllerPr
         tableView.register(UINib(nibName: WMConstant.CustomCell.adCellNibName, bundle: nil), forCellReuseIdentifier: WMConstant.CustomCell.adCellIdentifier)
         
         //Load Plants
-        Plants = plantDatabaseManger.loadPlants()
+        Plants = DatabaseManager.loadPlantsFromPersistentContainer()
         
         //Asking user for permission using the provisorial scheme!
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound, .provisional]) { success, error in
@@ -88,8 +86,7 @@ final class PlantsTableViewController: UITableViewController, UIViewControllerPr
         //Only executed for the transition to the detail View!
         if let destinationVC = segue.destination as? PlantDetailsViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
-                destinationVC.selectedPlant = Plants[indexPath.row].plantName
-                destinationVC.selectedPlantImage = UIImage(data:Plants[indexPath.row].plantImage!)
+                destinationVC.plant = Plants[indexPath.row]
             }
         } else if let destinationVC = segue.destination as? AddPlantViewController {
                 destinationVC.callingViewController = self
@@ -104,8 +101,7 @@ final class PlantsTableViewController: UITableViewController, UIViewControllerPr
         guard let cell = plantsTableView?.cellForRow(at: indexPath) else { return nil }
         guard let detailVC = storyboard?.instantiateViewController(withIdentifier: WMConstant.StoryBoardID.PlantDetailsViewController) as? PlantDetailsViewController else { return nil }
         
-        detailVC.selectedPlant = Plants[indexPath.row].plantName
-        detailVC.selectedPlantImage = UIImage(data:Plants[indexPath.row].plantImage!)
+        detailVC.plant = Plants[indexPath.row]
         detailVC.preferredContentSize = CGSize(width: 0.0, height: 300)
         
         previewingContext.sourceRect = cell.frame
@@ -168,9 +164,8 @@ extension PlantsTableViewController: SwipeTableViewCellDelegate {
             // handle action by updating model with deletion
             if indexPath.row < self.Plants.count {
 
-                self.plantDatabaseManger.deletePlant(plant: self.Plants[indexPath.row])
+                DatabaseManager.deletePlantFromContext(plant: self.Plants[indexPath.row])
                 self.Plants.remove(at: indexPath.row) //IMPORTANT: first the context, then the array! If not ndex out of range
-                self.plantDatabaseManger.savePlants()
             }
         }
         // customize the action appearance
@@ -187,7 +182,17 @@ extension PlantsTableViewController: SwipeTableViewCellDelegate {
         editAction.image = UIImage(named: "pencil")
         editAction.backgroundColor = UIColor.orange
         
-        return [deleteAction, editAction]
+        let waterAction = SwipeAction(style: .default, title: "Water") { action, indexPath in
+            // handle action by updating model with deletion
+            if indexPath.row < self.Plants.count {
+                DatabaseManager.wateredPlant(plant: self.Plants[indexPath.row])
+            }
+        }
+        // customize the action appearance
+        waterAction.image = UIImage(named: "drop")
+        waterAction.backgroundColor = UIColor.blue
+        
+        return [deleteAction, editAction, waterAction]
     }
     
     /**used to define the options for swiping*/

@@ -18,3 +18,8 @@ enum AppStoreReviewManager {
     
   }
 }
+
+enum EwateringStatistic {
+    case timesWatered
+    case numberOfPlants
+}
