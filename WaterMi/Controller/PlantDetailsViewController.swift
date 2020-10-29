@@ -19,6 +19,7 @@ final class PlantDetailsViewController: UIViewController {
     @IBOutlet weak var intervallLabel: UILabel!
     @IBOutlet weak var timesWateredLabel: UILabel!
     @IBOutlet weak var timerActiveLabel: UILabel!
+    @IBOutlet weak var uuidLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,8 +30,10 @@ final class PlantDetailsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.plantNameLabel.text = plant?.plantName
         self.plantImageView.image = UIImage(data:(plant?.plantImage!)!)
+        plantImageView.contentMode = UIView.ContentMode.scaleAspectFill
         self.plantTimerActiveStatus.setOn(plant!.timerActive, animated: true)
         self.timerActiveLabel.text = plant!.timerActive.description
+        self.uuidLabel.text = plant?.plantID
         
         let formater = DateFormatter()
         formater.dateStyle = .full
@@ -54,7 +57,15 @@ final class PlantDetailsViewController: UIViewController {
     }
 
     @IBAction func timerActivationSwitch(_ sender: UISwitch) {
+                
         DatabaseManager.setPlantActivationState(plant: plant!, newState: sender.isOn)
+        
+        //When Timeer is turned again, the initial Timer is setup again
+        if sender.isOn {
+            NotificationManager.SetUpWateringNotification(for: plant!)
+        } else {
+            NotificationManager.CancelPendingNotification(for: plant!)
+        }
     }
     
     //MARK: - Preview Functionality
@@ -71,7 +82,6 @@ final class PlantDetailsViewController: UIViewController {
             }
             
             return [action1, action2]
-            
         }
 }
 
@@ -88,7 +98,7 @@ extension PlantDetailsViewController: UIViewControllerRepresentable {
                 identifier: WMConstant.StoryBoardID.PlantDetailsViewController) as? PlantDetailsViewController else {
           fatalError("Cannot load from storyboard")
       }
-    var plant:Plant = DatabaseManager.getDebugPlant()
+    let plant:Plant = DatabaseManager.getDebugPlant()
     viewController.plant = plant
       // Configure the view controller here
       return viewController

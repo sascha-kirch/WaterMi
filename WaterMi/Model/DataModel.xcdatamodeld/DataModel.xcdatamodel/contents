@@ -3,6 +3,7 @@
     <entity name="Plant" representedClassName=".Plant" syncable="YES" codeGenerationType="class">
         <attribute name="lastTimeWatering" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="nextTimeWatering" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="plantID" attributeType="String"/>
         <attribute name="plantImage" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
         <attribute name="plantName" attributeType="String"/>
         <attribute name="timerActive" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -16,7 +17,7 @@
         <relationship name="parentPlant" maxCount="1" deletionRule="Nullify" destinationEntity="Plant" inverseName="wateringStatistics" inverseEntity="Plant"/>
     </entity>
     <elements>
-        <element name="Plant" positionX="-63" positionY="-18" width="128" height="149"/>
+        <element name="Plant" positionX="-63" positionY="-18" width="128" height="164"/>
         <element name="WateringStatistic" positionX="-63" positionY="36" width="128" height="74"/>
     </elements>
 </model>

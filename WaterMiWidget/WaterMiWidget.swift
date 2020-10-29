@@ -17,7 +17,7 @@ struct Provider: TimelineProvider {
     
     /**Snapshot is used to display widget in the widget center as preview*/
     func getSnapshot(in context: Context, completion: @escaping (PlantEntry) -> ()) {
-        let entry = PlantEntry(date: Date(), plantName: "Olivio", plantImage: UIImage(named: "WaterMi_Image")!)
+        _ = PlantEntry(date: Date(), plantName: "Olivio", plantImage: UIImage(named: "WaterMi_Image")!)
     }
     
     /**Time line when the widget is presented and updated. */

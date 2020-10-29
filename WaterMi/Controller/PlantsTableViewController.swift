@@ -28,7 +28,7 @@ final class PlantsTableViewController: UITableViewController, UIViewControllerPr
         plantsTableView.delegate = self
         plantsTableView.dataSource = self
         UNUserNotificationCenter.current().delegate = self
-        setNotificationCategories()
+        NotificationManager.setNotificationCategories()
         
         //register custom cell design!
         tableView.register(UINib(nibName: WMConstant.CustomCell.plantCellNibName, bundle: nil), forCellReuseIdentifier: WMConstant.CustomCell.plantCellIdentifier)
@@ -53,8 +53,7 @@ final class PlantsTableViewController: UITableViewController, UIViewControllerPr
     
     // MARK: - Table view data source
     
-    override func tableView(_ tableView: UITableView,
-                            numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Plants.count
     }
     
@@ -62,8 +61,7 @@ final class PlantsTableViewController: UITableViewController, UIViewControllerPr
         return 1
     }
     
-    override func tableView(_ tableView: UITableView,
-                            cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let plant = Plants[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: WMConstant.CustomCell.plantCellIdentifier, for: indexPath) as! PlantCell
@@ -77,8 +75,7 @@ final class PlantsTableViewController: UITableViewController, UIViewControllerPr
     //MARK: - Row Interaction
     
     /**Defines what happens, when item has been selected*/
-    override func tableView(_ tableView: UITableView,
-                            didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: WMConstant.SegueID.plantDetailsView, sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -97,8 +94,7 @@ final class PlantsTableViewController: UITableViewController, UIViewControllerPr
     
     //MARK: - 3D Touch capabilities
     /**Returns the preview for a certain viewcontroller*/
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing,
-                           viewControllerForLocation location: CGPoint) -> UIViewController? {
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         guard let indexPath = plantsTableView?.indexPathForRow(at: location) else { return nil }
         guard let cell = plantsTableView?.cellForRow(at: indexPath) else { return nil }
         guard let detailVC = storyboard?.instantiateViewController(withIdentifier: WMConstant.StoryBoardID.PlantDetailsViewController) as? PlantDetailsViewController else { return nil }
@@ -120,38 +116,30 @@ final class PlantsTableViewController: UITableViewController, UIViewControllerPr
     //MARK: - Notification related
     
     /**Used to debug notifications*/
-    @IBAction func notificationButtonPressed(_ sender: UIBarButtonItem) {
-        let notificationContent = UNMutableNotificationContent()
-        notificationContent.title = "Olivio:"
-        notificationContent.subtitle = "\"Hi pal! I am getting thursty!\""
-        notificationContent.body = "Please be so kind and help olivio. Don't forget to update the reminder!"
-        notificationContent.sound = UNNotificationSound.default
-        notificationContent.badge = NSNumber(value: UIApplication.shared.applicationIconBadgeNumber + 1)
-        notificationContent.categoryIdentifier = "watermi.category"
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        let userInfo = response.notification.request.content.userInfo
         
-        //Method is defined in the extensions file!
-        if let attechment = UNNotificationAttachment.create(identifier: ProcessInfo.processInfo.globallyUniqueString, image: UIImage(named: "olivio")!, options: nil){
-            notificationContent.attachments = [attechment]
+        if let plantID = userInfo["plantID"] as? String {
+            print("Received plantID: \(plantID)")
+        
+            if let plant:Plant = DatabaseManager.getPlantFromUUIDString(uuid: plantID){
+            
+            switch response.actionIdentifier {
+            case UNNotificationDefaultActionIdentifier:
+                //User Swiped to unlock
+            print("Default Identifier")
+            case "waterAction":
+                DatabaseManager.wateredPlant(plant: plant)
+            case "postponeAction":
+                print("postponeAction triggered")
+            default:
+                break
+            }
+            }
         }
-
-        // show this notification one seconds from now
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-
-        // choose a random identifier
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: notificationContent, trigger: trigger)
-
-        // add our notification request
-        UNUserNotificationCenter.current().add(request)
-    }
-    
-    func setNotificationCategories(){
-        let waterAction = UNNotificationAction(identifier: "waterAction", title: "Watered!", options: [])
-        let postponeAction = UNNotificationAction(identifier: "postponeAction", title: "Remind me later!", options: [])
-    
-        let waterMiCategory = UNNotificationCategory(identifier: "watermi.category", actions: [waterAction,postponeAction], intentIdentifiers: [], options: [])
-    
-        UNUserNotificationCenter.current().setNotificationCategories([waterMiCategory])
         
+        //you must call completionhandler when you're done
+        completionHandler()
     }
 }
 
@@ -194,7 +182,17 @@ extension PlantsTableViewController: SwipeTableViewCellDelegate {
         waterAction.image = UIImage(named: "drop")
         waterAction.backgroundColor = UIColor.blue
         
-        return [deleteAction, editAction, waterAction]
+        let notifyAction = SwipeAction(style: .default, title: "Notify") { action, indexPath in
+            // handle action by updating model with deletion
+            if indexPath.row < self.Plants.count {
+                NotificationManager.SetUpWateringNotification(for: self.Plants[indexPath.row])
+            }
+        }
+        // customize the action appearance
+        notifyAction.image = UIImage(named: "message")
+        notifyAction.backgroundColor = UIColor.gray
+        
+        return [deleteAction, editAction, waterAction, notifyAction]
     }
     
     /**used to define the options for swiping*/

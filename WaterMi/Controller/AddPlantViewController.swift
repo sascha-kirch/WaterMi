@@ -14,7 +14,7 @@ final class AddPlantViewController: UIViewController , UITextFieldDelegate, UIIm
     var selectedPlantImage: UIImage?
     var callingViewController : PlantsTableViewController?
     var imagePickerController : UIImagePickerController = UIImagePickerController()
-    let intervallData = Array(1...31)
+    let intervallData = Array(0...31) //Zero only for debugging of the notification!!
     
     @IBOutlet weak var plantImageView: UIImageView!
     @IBOutlet weak var plantNameTextField: UITextField!
@@ -41,6 +41,7 @@ final class AddPlantViewController: UIViewController , UITextFieldDelegate, UIIm
         }
         
         // crate round image View!!
+        plantImageView.contentMode = UIView.ContentMode.scaleAspectFill
         plantImageView.layer.borderWidth = 1
         plantImageView.layer.masksToBounds = false
         plantImageView.layer.borderColor = UIColor.black.cgColor
@@ -62,6 +63,7 @@ final class AddPlantViewController: UIViewController , UITextFieldDelegate, UIIm
                 waterTime: datePicker.date)
             viewController.Plants.append(newPlant)
             callingViewController?.tableView.reloadData()
+            NotificationManager.SetUpWateringNotification(for: newPlant)
         }
         dismiss(animated: true, completion: nil)
     }

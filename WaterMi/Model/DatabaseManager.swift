@@ -40,6 +40,7 @@ class DatabaseManager {
     /**Adds a new plant to the context*/
     static func addNewPlantToContext(plantName:String, plantImage:UIImage, waterIntervall:Int16, waterTime:Date, saveContextToContainer:Bool = true) -> Plant {
         let newPlant = Plant(context: persistentContainer.viewContext)
+        newPlant.plantID = UUID().uuidString
         newPlant.plantName = plantName
         newPlant.plantImage = plantImage.pngData()
         newPlant.timerActive = true
@@ -71,7 +72,6 @@ class DatabaseManager {
         
         //Deletes all children since configured deletion is "cascade"
         persistentContainer.viewContext.delete(plant)
-        
         
         //saving is optional in order to be more efficient when modifying more objects at once
         if saveContextToContainer {
@@ -110,6 +110,20 @@ class DatabaseManager {
         return nextIntervallDate!
     }
     
+    static func getPlantFromUUIDString(uuid:String, request: NSFetchRequest<Plant> = Plant.fetchRequest()) -> Plant?{
+        var plant:Plant? = nil
+        let plantPredicate = NSPredicate(format: "plantID MATCHES %@", uuid)
+        request.predicate = plantPredicate
+        
+        do {
+            //first bacause the should be maximum 1 plant since uuid is unique
+            plant = try persistentContainer.viewContext.fetch(request).first
+            } catch {
+                print("Error loading category array \(error)")
+        }
+        return plant
+    }
+    
     static func getDebugPlant() -> Plant{
         let plant = Plant()
         plant.plantName = "olivio"
@@ -146,26 +160,6 @@ class DatabaseManager {
             saveContextToPersistentContainer()
         }
     }
-    
-    /**deletes statistic provided from context.*/
-   //static func deleteStatisticsOfPlantFromContext(plant:Plant, saveContextToContainer:Bool = false) {
-   //    //persistentContainer.viewContext.delete(statistic)
-   //
-   //    let plantPredicate = NSPredicate(format: "parentPlant.plantName MATCHES %@", plant.plantName!)
-   //    let fetchRequests = NSFetchRequest<NSFetchRequestResult>(entityName: "WateringStatistic")
-   //    fetchRequests.predicate = plantPredicate
-   //    let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequests)
-   //
-   //    do {
-   //        try persistentContainer.viewContext.execute(deleteRequest)
-   //    } catch {
-   //        print("Error loading category array \(error)")
-   //    }
-
-   //    if saveContextToContainer {
-   //        saveContextToPersistentContainer()
-   //    }
-   //}
     
     /**loads the plants stored in the container and returns the context*/
     static func loadStatisticsFromPersistentContainer(with request: NSFetchRequest<WateringStatistic> = WateringStatistic.fetchRequest()) -> [WateringStatistic] {

@@ -24,7 +24,7 @@ class PlantCell : SwipeTableViewCell {
     fileprivate func setupLayers() {
         timeLeftLabel.text = "23h"
         
-        plantImageView.contentMode = UIView.ContentMode.scaleAspectFit
+        plantImageView.contentMode = UIView.ContentMode.scaleAspectFill
         plantImageView.layer.cornerRadius = plantImageView.frame.size.width/2 //Image needs to be rectangular in order to work
         plantImageView.clipsToBounds = true
         plantImageView.layer.borderWidth = 1
